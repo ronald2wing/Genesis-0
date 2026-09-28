@@ -1,0 +1,42 @@
+{
+  "entries": [
+    {
+      "id": "example.hello",
+      "name": "Example: Hello (git)",
+      "version": "1.0.0",
+      "description": "A native hello extension installed from a git repository.",
+      "source": {
+        "type": "git",
+        "url": "https://example.com/example-hello.git",
+        "ref": "v1.0.0",
+        "subdir": "ext"
+      },
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "signature": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+    },
+    {
+      "id": "example.tool",
+      "name": "Example: Tool (git, no subdir)",
+      "version": "0.2.0",
+      "description": "A native tool extension installed from the root of a git repository.",
+      "source": {
+        "type": "git",
+        "url": "https://example.com/example-tool.git"
+      },
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "signature": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+    },
+    {
+      "id": "example.local",
+      "name": "Example: Local (dir)",
+      "version": "1.0.0",
+      "description": "A native extension installed from a local directory.",
+      "source": {
+        "type": "dir",
+        "url": "/srv/extensions/example-local"
+      },
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "signature": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+# cppcheck suppressions, read via --suppressions-list (one rule per line).
+#
+# Each line is the same spec as the --suppress flag, e.g.
+#   missingIncludeSystem
+#   unusedFunction:src/legacy/foo.cpp
+#   constParameter:src/app/model/*.h
+#
+# Prefer an inline `// cppcheck-suppress <id>` on the exact line (enabled by
+# --inline-suppr) over a blanket rule here: it is self-documenting and moves
+# with the code. Reserve this file for whole-file or whole-category
+# suppressions that are justified in the commit message.
+#
+# Currently empty: no suppressions are justified yet. The cppcheck target is
+# report-only (a baseline), so findings are recorded, not suppressed.

@@ -1,0 +1,19 @@
+{
+    "_meta": {
+        "status": "unreviewed-machine-draft",
+        "source": "en",
+        "generated": "2026-10-04"
+    },
+    "app.title": "Genesis-0",
+    "start.recentProjects": "Недавние проекты",
+    "start.empty": "Здесь пока ничего нет — открытые вами проекты появятся здесь.",
+    "start.open": "Открыть",
+    "start.newProject": "Новый проект",
+    "start.continue": "Перейти в редактор",
+    "start.templates": "Шаблоны",
+    "start.templatesEmpty": "Шаблонов пока нет.",
+    "start.create": "Создать",
+    "start.namePlaceholder": "Проект без названия",
+    "tray.show": "Показать Genesis-0",
+    "tray.quit": "Выход"
+}
