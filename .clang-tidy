@@ -1,0 +1,54 @@
+# Canonical check set: the default `Checks` list from ZedThree/clang-tidy-review,
+# the most-used clang-tidy CI action. The durable rule is that lint/format
+# settings stay the popular, canonical ones (no hand-tuned deviation) - the C++
+# style base is the Qt ecosystem (see .clang-format), and this check set is the
+# action's default verbatim (modulo this comment).
+#
+# Tuning layer. The canonical category block below stays the base; the three
+# `-<check>` exclusions and the one CheckOption are the standard, documented
+# noise-tuning large projects carry on top of the popular defaults (Chromium/
+# LLVM/Google all do this). Re-baseline procedure and rationale live in
+# docs/building.md "clang-tidy exclusions". Re-run `cmake --build build --target
+# tidy` and review the top remaining categories before adding another exclusion -
+# the goal is a signal you would act on, not a clean sheet.
+#
+# - misc-include-cleaner
+#     GStreamer/GES are umbrella-header libraries: `gst.h`, `pbutils.h` and the
+#     GES `*.h` headers pull their symbols from transitively-included internal
+#     headers, so "no header providing X is directly included" is the normal
+#     (and required) include shape, not a defect. Hand-including GStreamer
+#     internals breaks on every upstream header move. Norm: include the umbrella
+#     header, exactly as the GStreamer docs prescribe.
+# - readability-identifier-length
+#     The tree uses idiomatic short names - `id`, `ok`, `in`, `it`, `ec`, `c`,
+#     `a`/`b` (comparison params), `j` (loop index), `at` - that the 3-char
+#     minimum rejects wholesale. These are the domain's own words, not laziness.
+#     The per-kind minimums cannot separate them from real noise without an
+#     arbitrary ignore list, so exclusion is cleaner than a hand-tuned floor.
+#     Norm: descriptive names except where the short form is the domain's word.
+# - cppcoreguidelines-pro-bounds-avoid-unchecked-container-access
+#     A blanket ban on `operator[]`; the tree indexes vectors/maps in loops and
+#     static lookup tables whose index is in-bounds by construction. Norm:
+#     `operator[]` with a known-safe index, `.at()` only where a bounds check is
+#     the point. LLVM and Google both disable this check.
+#
+# CheckOption (not an exclusion - the check still runs and still catches the
+# real encapsulation smell):
+# - misc-non-private-member-variables-in-classes.IgnoreClassesWithAllMemberVariablesBeingPublic
+#     The tree's value types (`Ease`, `Key`, `Animation`, the API request DTOs)
+#     are all-public-data structs ported from Rust, deliberately combining data
+#     with a small helper (`operator==`, `apply`, `tidy`). The option silences
+#     only classes whose member variables are *all* public; a class that mixes
+#     public and private members is still flagged, which is exactly the smell
+#     the check exists to catch.
+Checks: >
+  -*,performance-*,readability-*,bugprone-*,clang-analyzer-*,cppcoreguidelines-*,mpi-*,misc-*,
+  -misc-include-cleaner,
+  -readability-identifier-length,
+  -cppcoreguidelines-pro-bounds-avoid-unchecked-container-access
+CheckOptions:
+  - key: misc-non-private-member-variables-in-classes.IgnoreClassesWithAllMemberVariablesBeingPublic
+    value: 'true'
+WarningsAsErrors: ''
+HeaderFilterRegex: '(src|tests)/.*'
+FormatStyle: file

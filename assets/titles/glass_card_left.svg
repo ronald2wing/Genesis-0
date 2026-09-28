@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+<rect x="192" y="430" width="720" height="240" fill="#FFFFFF" fill-opacity="0.80" rx="20"/>
+<rect x="192" y="430" width="720" height="240" fill="none" rx="20" stroke="#FFFFFF" stroke-opacity="0.5" stroke-width="1.5"/>
+<rect x="192" y="430" width="8" height="240" fill="#38BDF8"/>
+<text x="256" y="526" font-family="Inter, Manrope, Segoe UI, Roboto, Helvetica Neue, sans-serif" font-size="84" font-weight="700" fill="#17171C" text-anchor="start">Your Title</text>
+<text x="256" y="586" font-family="Inter, Manrope, Segoe UI, Roboto, Helvetica Neue, sans-serif" font-size="40" font-weight="400" fill="#334155" text-anchor="start">Subtitle</text>
+</svg>

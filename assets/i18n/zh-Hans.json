@@ -1,0 +1,19 @@
+{
+    "_meta": {
+        "status": "unreviewed-machine-draft",
+        "source": "en",
+        "generated": "2026-10-04"
+    },
+    "app.title": "Genesis-0",
+    "start.recentProjects": "最近的项目",
+    "start.empty": "这里还没有任何内容 — 你打开的项目会显示在这里。",
+    "start.open": "打开",
+    "start.newProject": "新建项目",
+    "start.continue": "继续进入编辑器",
+    "start.templates": "模板",
+    "start.templatesEmpty": "暂无模板。",
+    "start.create": "创建",
+    "start.namePlaceholder": "未命名项目",
+    "tray.show": "显示 Genesis-0",
+    "tray.quit": "退出"
+}

@@ -1,0 +1,153 @@
+{
+  "OTIO_SCHEMA": "Timeline.1",
+  "metadata": {},
+  "name": "Multiple Tracks",
+  "global_start_time": { "OTIO_SCHEMA": "RationalTime.1", "rate": 29.97002997002997, "value": 0 },
+  "tracks": {
+    "OTIO_SCHEMA": "Stack.1",
+    "metadata": {},
+    "name": "tracks",
+    "children": [
+      {
+        "OTIO_SCHEMA": "Track.1",
+        "metadata": {},
+        "name": "V1",
+        "source_range": null,
+        "effects": [],
+        "markers": [],
+        "enabled": true,
+        "children": [
+          {
+            "OTIO_SCHEMA": "Gap.1",
+            "metadata": {},
+            "name": "",
+            "source_range": {
+              "OTIO_SCHEMA": "TimeRange.1",
+              "start_time": { "OTIO_SCHEMA": "RationalTime.1", "rate": 29.97002997002997, "value": 0 },
+              "duration": { "OTIO_SCHEMA": "RationalTime.1", "rate": 29.97002997002997, "value": 4 }
+            },
+            "effects": [],
+            "markers": [],
+            "enabled": true
+          },
+          {
+            "OTIO_SCHEMA": "Clip.1",
+            "metadata": {},
+            "name": "Opening",
+            "source_range": {
+              "OTIO_SCHEMA": "TimeRange.1",
+              "start_time": { "OTIO_SCHEMA": "RationalTime.1", "rate": 29.97002997002997, "value": 0 },
+              "duration": { "OTIO_SCHEMA": "RationalTime.1", "rate": 29.97002997002997, "value": 48 }
+            },
+            "effects": [],
+            "markers": [],
+            "enabled": true,
+            "media_reference": {
+              "OTIO_SCHEMA": "ExternalReference.1",
+              "metadata": {},
+              "name": "opening.mov",
+              "available_range": null,
+              "target_url": "file:///media/opening.mov"
+            }
+          },
+          {
+            "OTIO_SCHEMA": "Gap.1",
+            "metadata": {},
+            "name": "",
+            "source_range": {
+              "OTIO_SCHEMA": "TimeRange.1",
+              "start_time": { "OTIO_SCHEMA": "RationalTime.1", "rate": 29.97002997002997, "value": 0 },
+              "duration": { "OTIO_SCHEMA": "RationalTime.1", "rate": 29.97002997002997, "value": 12 }
+            },
+            "effects": [],
+            "markers": [],
+            "enabled": true
+          },
+          {
+            "OTIO_SCHEMA": "Clip.1",
+            "metadata": {},
+            "name": "Closing",
+            "source_range": {
+              "OTIO_SCHEMA": "TimeRange.1",
+              "start_time": { "OTIO_SCHEMA": "RationalTime.1", "rate": 29.97002997002997, "value": 96 },
+              "duration": { "OTIO_SCHEMA": "RationalTime.1", "rate": 29.97002997002997, "value": 24 }
+            },
+            "effects": [],
+            "markers": [],
+            "enabled": true,
+            "media_reference": {
+              "OTIO_SCHEMA": "ExternalReference.1",
+              "metadata": {},
+              "name": "closing.mov",
+              "available_range": null,
+              "target_url": "file:///media/closing.mov"
+            }
+          }
+        ]
+      },
+      {
+        "OTIO_SCHEMA": "Track.1",
+        "metadata": {},
+        "name": "V2",
+        "source_range": null,
+        "effects": [],
+        "markers": [],
+        "enabled": true,
+        "children": [
+          {
+            "OTIO_SCHEMA": "Clip.1",
+            "metadata": {},
+            "name": "Insert",
+            "source_range": {
+              "OTIO_SCHEMA": "TimeRange.1",
+              "start_time": { "OTIO_SCHEMA": "RationalTime.1", "rate": 29.97002997002997, "value": 0 },
+              "duration": { "OTIO_SCHEMA": "RationalTime.1", "rate": 29.97002997002997, "value": 30 }
+            },
+            "effects": [],
+            "markers": [],
+            "enabled": true,
+            "media_reference": {
+              "OTIO_SCHEMA": "ExternalReference.1",
+              "metadata": {},
+              "name": "insert.mov",
+              "available_range": null,
+              "target_url": "file:///media/insert.mov"
+            }
+          }
+        ]
+      },
+      {
+        "OTIO_SCHEMA": "Track.1",
+        "metadata": {},
+        "name": "A1",
+        "kind": "Audio",
+        "source_range": null,
+        "effects": [],
+        "markers": [],
+        "enabled": true,
+        "children": [
+          {
+            "OTIO_SCHEMA": "Clip.1",
+            "metadata": {},
+            "name": "Music",
+            "source_range": {
+              "OTIO_SCHEMA": "TimeRange.1",
+              "start_time": { "OTIO_SCHEMA": "RationalTime.1", "rate": 29.97002997002997, "value": 0 },
+              "duration": { "OTIO_SCHEMA": "RationalTime.1", "rate": 29.97002997002997, "value": 120 }
+            },
+            "effects": [],
+            "markers": [],
+            "enabled": true,
+            "media_reference": {
+              "OTIO_SCHEMA": "ExternalReference.1",
+              "metadata": {},
+              "name": "music.wav",
+              "available_range": null,
+              "target_url": "file:///media/music.wav"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

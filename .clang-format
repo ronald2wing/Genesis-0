@@ -1,0 +1,66 @@
+---
+# Qt-ecosystem style: a faithful port of Qt's canonical `_clang-format`
+# (qt5.git) / Qt Creator's `.clang-format` for clang-format 22.1.8.
+#
+# Deviations from Qt's canonical config, required by the clang-format 19-22
+# option renames/removals (the old spellings still parse as silent aliases,
+# but the modern names are used here so the file documents the real setting):
+#   - PointerBindsToType: false        -> PointerAlignment: Right
+#                                          (+ ReferenceAlignment: Right)
+#   - AlwaysBreakTemplateDeclarations   -> BreakTemplateDeclarations: Yes
+#   - ConstructorInitializerAllOnOneLineOrOnePerLine: true
+#                                       -> PackConstructorInitializers: NextLine
+#   - AlignAfterOpenBracket (enum)      -> AlignAfterOpenBracket (bool, `true`)
+#                                          (Qt already used the bool form)
+#   - Standard: c++17                   -> Standard: Latest (per repo policy)
+#   - IncludeBlocks: Preserve / LineEnding: LF are stated explicitly (they are
+#     WebKit defaults / repo policy, not in Qt's file).
+Language: Cpp
+BasedOnStyle: WebKit
+Standard: Latest
+ColumnLimit: 100
+ContinuationIndentWidth: 8
+PointerAlignment: Right
+ReferenceAlignment: Right
+DerivePointerAlignment: false
+SpaceAfterTemplateKeyword: true
+BreakBeforeBinaryOperators: NonAssignment
+BreakBeforeBraces: Custom
+BraceWrapping:
+  AfterClass: true
+  AfterControlStatement: Never
+  AfterEnum: false
+  AfterFunction: true
+  AfterNamespace: false
+  AfterObjCDeclaration: false
+  AfterStruct: true
+  AfterUnion: false
+  BeforeCatch: false
+  BeforeElse: false
+  IndentBraces: false
+PackConstructorInitializers: NextLine
+ConstructorInitializerIndentWidth: 4
+BreakConstructorInitializers: BeforeColon
+NamespaceIndentation: None
+IndentPPDirectives: AfterHash
+PPIndentWidth: 2
+AlignAfterOpenBracket: true
+BreakTemplateDeclarations: Yes
+AllowShortFunctionsOnASingleLine: Inline
+SortIncludes: false
+IncludeBlocks: Preserve
+ForEachMacros:
+  - foreach
+  - Q_FOREACH
+  - BOOST_FOREACH
+  - forever
+  - Q_FOREVER
+  - QBENCHMARK
+  - QBENCHMARK_ONCE
+FixNamespaceComments: true
+ShortNamespaceLines: 1
+AlignEscapedNewlines: Left
+SpaceBeforeCpp11BracedList: false
+ReflowComments: false
+CommentPragmas: '^!|^:|^ SPDX-License-Identifier:'
+LineEnding: LF

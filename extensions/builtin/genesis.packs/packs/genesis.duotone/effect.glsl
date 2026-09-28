@@ -1,0 +1,16 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// SPDX-FileCopyrightText: 2026 Genesis-0 contributors
+//
+// The fragment BODY; see genesis.exposure/effect.glsl for the contract.
+
+vec3 hue (float h) {
+    return clamp (abs (mod (h * 6.0 + vec3 (0.0, 4.0, 2.0), 6.0) - 3.0) - 1.0, 0.0, 1.0);
+}
+
+void main () {
+    vec4 c = texture2D (tex, v_texcoord);
+    float l = dot (c.rgb, vec3 (0.2126, 0.7152, 0.0722));
+    vec3 low = hue (shadow_hue / 360.0);
+    vec3 high = hue (highlight_hue / 360.0);
+    gl_FragColor = vec4 (mix (low, high, l), c.a);
+}

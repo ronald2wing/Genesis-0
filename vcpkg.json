@@ -1,0 +1,14 @@
+{
+  "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg.schema.json",
+  "name": "genesis-0",
+  "version-string": "0.1.0",
+  "builtin-baseline": "469a0504e4a6ebf6173d1c0f51a7fa34c382fd43",
+  "dependencies": [
+    "cli11",
+    "curl",
+    "libarchive",
+    "nlohmann-json",
+    "pugixml",
+    "tomlplusplus"
+  ]
+}
