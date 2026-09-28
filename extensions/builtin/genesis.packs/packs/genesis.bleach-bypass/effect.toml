@@ -1,0 +1,22 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# SPDX-FileCopyrightText: 2026 Genesis-0 contributors
+#
+# Re-authored from Concat's concat-effects package `concat.bleach-bypass`,
+# SPDX-License-Identifier: GPL-3.0-or-later,
+# SPDX-FileCopyrightText: 2026 Jareer and Concat contributors.
+#
+# The body is effect.glsl beside this manifest; [wgsl].entry is documentation
+# only and is not consulted on the GLSL execution path.
+
+format = 2
+
+[effect]
+id = "genesis.bleach-bypass"
+name = "Bleach Bypass"
+kind = "filter"
+category = "Cinematic"
+order = 51
+description = "The silver-retention film process: colour washed out, contrast pushed hard."
+
+[wgsl]
+entry = "effect.glsl"

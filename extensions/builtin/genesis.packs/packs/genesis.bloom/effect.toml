@@ -1,0 +1,33 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# SPDX-FileCopyrightText: 2026 Genesis-0 contributors
+#
+# Re-authored from Concat's concat-effects packages `concat.bloom-pulse` and
+# `concat.glow` (folded into a single, non-animated pass),
+# SPDX-License-Identifier: GPL-3.0-or-later,
+# SPDX-FileCopyrightText: 2026 Jareer and Concat contributors.
+#
+# The body is effect.glsl beside this manifest; [wgsl].entry is documentation
+# only and is not consulted on the GLSL execution path.
+
+format = 2
+
+[effect]
+id = "genesis.bloom"
+name = "Bloom"
+kind = "filter"
+category = "Light"
+order = 72
+intensity = "amount"
+description = "A soft bloom around the bright parts of the picture."
+
+[[param]]
+key = "amount"
+label = "Amount"
+min = 0
+max = 100
+default = 50
+step = 1
+unit = "%"
+
+[wgsl]
+entry = "effect.glsl"

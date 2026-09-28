@@ -1,0 +1,54 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# SPDX-FileCopyrightText: 2026 Genesis-0 contributors
+#
+# The body is effect.glsl beside this manifest; [wgsl].entry is documentation
+# only and is not consulted on the GLSL execution path.
+
+format = 2
+
+[effect]
+id = "genesis.drop-shadow"
+name = "Drop Shadow"
+kind = "effect"
+category = "Stylize"
+order = 41
+description = "A dark shadow cast beside a title or overlay's opaque shapes."
+
+[[param]]
+key = "offset_x"
+label = "Offset X"
+min = -50
+max = 50
+default = 10
+step = 1
+unit = "px"
+
+[[param]]
+key = "offset_y"
+label = "Offset Y"
+min = -50
+max = 50
+default = 15
+step = 1
+unit = "px"
+
+[[param]]
+key = "blur"
+label = "Blur"
+min = 0
+max = 30
+default = 8
+step = 1
+unit = "px"
+
+[[param]]
+key = "opacity"
+label = "Opacity"
+min = 0
+max = 100
+default = 70
+step = 1
+unit = "%"
+
+[wgsl]
+entry = "effect.glsl"

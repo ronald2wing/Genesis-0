@@ -1,0 +1,63 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# SPDX-FileCopyrightText: 2026 Genesis-0 contributors
+#
+# An audio Pack: the `[audio]` table names the stock GStreamer element
+# (`rgvolume`, gst-plugins-good/replaygain) and maps the pack's knobs onto its
+# properties. rgvolume does no analysis of its own: a stream that carries
+# ReplayGain tags plays the tagged gain with `pre-amp` applied on top, while a
+# stream without tags falls back to `fallback-gain` - so `boost` offsets the
+# tagged level and `fallback` is the whole level for an untagged clip. The
+# element's existence (and a tag-less stream) are host concerns; the adapter
+# keeps the filter skipped rather than failing the build.
+
+format = 2
+
+[effect]
+id = "genesis.loudness"
+name = "Loudness"
+kind = "audio"
+category = "Audio"
+order = 1
+description = "A ReplayGain-style level: boost rides tagged gain, fallback sets the level for untagged audio."
+
+[[param]]
+key = "boost"
+label = "Boost"
+min = -60
+max = 60
+default = 0
+step = 0.5
+unit = "dB"
+
+[[param]]
+key = "fallback"
+label = "Fallback"
+min = -60
+max = 60
+default = 0
+step = 0.5
+unit = "dB"
+
+[[param]]
+key = "album"
+label = "Album Mode"
+type = "bool"
+min = 0
+max = 1
+default = 1
+step = 1
+
+[audio]
+element = "rgvolume"
+
+[[audio.param]]
+key = "pre-amp"
+expr = "boost"
+
+[[audio.param]]
+key = "fallback-gain"
+expr = "fallback"
+
+[[audio.param]]
+key = "album-mode"
+expr = "album"

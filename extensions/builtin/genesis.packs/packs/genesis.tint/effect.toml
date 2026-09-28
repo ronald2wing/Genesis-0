@@ -1,0 +1,29 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# SPDX-FileCopyrightText: 2026 Genesis-0 contributors
+#
+# The body is effect.glsl beside this manifest; [wgsl].entry is documentation
+# only and is not consulted on the GLSL execution path.
+
+format = 2
+
+[effect]
+id = "genesis.tint"
+name = "Tint"
+kind = "filter"
+category = "Color"
+order = 14
+intensity = "amount"
+description = "Green towards magenta, the other axis of white balance."
+
+[[param]]
+key = "amount"
+label = "Tint"
+min = -100
+max = 100
+default = 0
+step = 1
+unit = "%"
+animate = true
+
+[wgsl]
+entry = "effect.glsl"

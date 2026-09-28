@@ -1,0 +1,27 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# SPDX-FileCopyrightText: 2026 Genesis-0 contributors
+#
+# The body is effect.glsl beside this manifest; [wgsl].entry is documentation
+# only and is not consulted on the GLSL execution path.
+
+format = 2
+
+[effect]
+id = "genesis.threshold"
+name = "Threshold"
+kind = "effect"
+category = "Stylize"
+order = 44
+intensity = "threshold"
+description = "Black and white at a hard cut: a pixel is white past the level."
+
+[[param]]
+key = "threshold"
+label = "Threshold"
+min = 0
+max = 1
+default = 0.5
+step = 0.01
+
+[wgsl]
+entry = "effect.glsl"

@@ -1,0 +1,45 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# SPDX-FileCopyrightText: 2026 Genesis-0 contributors
+#
+# An audio Pack: the `[audio]` table maps the knobs onto the stock `pitch`
+# element (gst-plugins-bad/soundtouch). 1 is unchanged; above raises, below
+# lowers. The element processes F32LE audio only, so a clip whose decoded audio
+# is another format keeps the filter skipped - a graceful degrade, never a
+# failed build - the same as a host that lacks the element.
+
+format = 2
+
+[effect]
+id = "genesis.pitch"
+name = "Pitch"
+kind = "audio"
+category = "Audio"
+order = 2
+description = "Repitch and retime a clip's sound: 1 is unchanged, above raises the pitch or speed."
+
+[[param]]
+key = "pitch"
+label = "Pitch"
+min = 0.1
+max = 10
+default = 1
+step = 0.05
+
+[[param]]
+key = "tempo"
+label = "Tempo"
+min = 0.1
+max = 10
+default = 1
+step = 0.05
+
+[audio]
+element = "pitch"
+
+[[audio.param]]
+key = "pitch"
+expr = "pitch"
+
+[[audio.param]]
+key = "tempo"
+expr = "tempo"

@@ -1,0 +1,38 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# SPDX-FileCopyrightText: 2026 Genesis-0 contributors
+#
+# The body is effect.glsl beside this manifest; [wgsl].entry is documentation
+# only and is not consulted on the GLSL execution path.
+
+format = 2
+
+[effect]
+id = "genesis.directional-blur"
+name = "Directional Blur"
+kind = "effect"
+category = "Blur"
+order = 22
+intensity = "radius"
+description = "A streak of motion along a chosen angle, the picture smeared one way."
+
+[[param]]
+key = "angle"
+label = "Angle"
+min = -180
+max = 180
+default = 0
+step = 1
+unit = "deg"
+animate = true
+
+[[param]]
+key = "radius"
+label = "Radius"
+min = 1
+max = 50
+default = 10
+step = 1
+unit = "px"
+
+[wgsl]
+entry = "effect.glsl"

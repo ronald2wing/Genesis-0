@@ -1,0 +1,30 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# SPDX-FileCopyrightText: 2026 Genesis-0 contributors
+#
+# The body is effect.glsl beside this manifest; [wgsl].entry is documentation
+# only and is not consulted on the GLSL execution path.
+
+format = 2
+
+[effect]
+id = "genesis.mirror"
+name = "Mirror"
+kind = "effect"
+category = "Transform"
+order = 61
+aliases = ["mirror"]
+description = "Half the picture reflected across the middle, one way or both."
+
+[[param]]
+key = "mode"
+label = "Mode"
+type = "enum"
+min = 0
+max = 2
+default = 0
+step = 1
+values = [0, 1, 2]
+labels = ["Left-right", "Top-bottom", "Both"]
+
+[wgsl]
+entry = "effect.glsl"

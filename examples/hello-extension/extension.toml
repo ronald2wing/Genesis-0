@@ -1,0 +1,37 @@
+# Hello Extension - a minimal native Extension (Extension SDK example).
+#
+# See ../../../docs/extensions.md for the full manifest reference and the C ABI.
+# `entry` and a panel's `qml` must each be a bare file name BESIDE this manifest
+# (the parser rejects path separators), so the library and the panel live next
+# to extension.toml, not in subdirectories.
+
+format = 1
+
+[extension]
+id = "example.hello"
+name = "Hello Extension"
+kind = "native"
+version = 1
+api = 1
+# Platform-specific shared library file name, beside this manifest:
+#   Linux   libhello.so
+#   macOS   libhello.dylib
+#   Windows libhello.dll
+entry = "libhello.so"
+
+# A menu entry that calls back into this library's invoke("hello").
+[[menu]]
+path = "Tools/Hello"
+label = "Hello"
+action = "hello"
+
+# A declarative menu entry: the host routes the string to its API bridge
+# (call_json) instead of calling the library.
+[[menu]]
+path = "Tools/Hello Host Version"
+label = "Show Host Version"
+call = "version"
+
+[[panel]]
+label = "Hello"
+qml = "HelloPanel.qml"

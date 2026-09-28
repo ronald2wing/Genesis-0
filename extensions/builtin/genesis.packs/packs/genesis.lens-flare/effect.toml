@@ -1,0 +1,37 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# SPDX-FileCopyrightText: 2026 Genesis-0 contributors
+#
+# The body is effect.glsl beside this manifest; [wgsl].entry is documentation
+# only and is not consulted on the GLSL execution path.
+
+format = 2
+
+[effect]
+id = "genesis.lens-flare"
+name = "Lens Flare"
+kind = "effect"
+category = "Light"
+order = 71
+description = "An anamorphic streak and hot spot, light catching the lens."
+
+[[param]]
+key = "strength"
+label = "Strength"
+min = 0
+max = 100
+default = 50
+step = 1
+unit = "%"
+
+[[param]]
+key = "angle"
+label = "Angle"
+min = 0
+max = 360
+default = 0
+step = 1
+unit = "deg"
+animate = true
+
+[wgsl]
+entry = "effect.glsl"

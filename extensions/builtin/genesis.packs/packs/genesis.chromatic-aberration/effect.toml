@@ -1,0 +1,34 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# SPDX-FileCopyrightText: 2026 Genesis-0 contributors
+#
+# Re-authored from Concat's concat-effects package `concat.chromatic-aberration`,
+# SPDX-License-Identifier: GPL-3.0-or-later,
+# SPDX-FileCopyrightText: 2026 Jareer and Concat contributors.
+#
+# The body is effect.glsl beside this manifest; [wgsl].entry is documentation
+# only and is not consulted on the GLSL execution path.
+
+format = 2
+
+[effect]
+id = "genesis.chromatic-aberration"
+name = "Chromatic Aberration"
+kind = "effect"
+category = "Distort"
+order = 57
+intensity = "shift"
+aliases = ["chromatic-aberration"]
+description = "Red and blue pulled apart towards the edges, the colour fringing of a cheap lens."
+
+[[param]]
+key = "shift"
+label = "Shift"
+type = "int"
+min = 1
+max = 24
+default = 4
+step = 1
+unit = "px"
+
+[wgsl]
+entry = "effect.glsl"

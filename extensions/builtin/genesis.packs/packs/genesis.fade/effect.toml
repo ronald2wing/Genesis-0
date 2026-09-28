@@ -1,0 +1,28 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# SPDX-FileCopyrightText: 2026 Genesis-0 contributors
+#
+# The body is effect.glsl beside this manifest; [wgsl].entry is documentation
+# only and is not consulted on the GLSL execution path.
+
+format = 2
+
+[effect]
+id = "genesis.fade"
+name = "Fade"
+kind = "filter"
+category = "Color"
+order = 22
+intensity = "strength"
+description = "The faded film print: blacks lifted to grey, whites softened and a little colour pulled out, mixed from full strength down to the untouched picture."
+
+[[param]]
+key = "strength"
+label = "Strength"
+min = 0
+max = 100
+default = 100
+step = 1
+unit = "%"
+
+[wgsl]
+entry = "effect.glsl"

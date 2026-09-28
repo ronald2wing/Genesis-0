@@ -1,0 +1,36 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# SPDX-FileCopyrightText: 2026 Genesis-0 contributors
+#
+# The body is effect.glsl beside this manifest; [wgsl].entry is documentation
+# only and is not consulted on the GLSL execution path.
+
+format = 2
+
+[effect]
+id = "genesis.watercolor"
+name = "Watercolor"
+kind = "effect"
+category = "Stylize"
+order = 58
+description = "A soft wash with deepened midtones, pigment bleeding on paper."
+
+[[param]]
+key = "detail"
+label = "Detail"
+min = 0
+max = 20
+default = 4
+step = 1
+unit = "px"
+
+[[param]]
+key = "strength"
+label = "Strength"
+min = 0
+max = 100
+default = 60
+step = 1
+unit = "%"
+
+[wgsl]
+entry = "effect.glsl"

@@ -1,0 +1,36 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# SPDX-FileCopyrightText: 2026 Genesis-0 contributors
+#
+# Re-authored from Concat's concat-effects package `concat.gaussian-blur`,
+# SPDX-License-Identifier: GPL-3.0-or-later,
+# SPDX-FileCopyrightText: 2026 Jareer and Concat contributors.
+#
+# The original drew `across` then `down` (a separable Gaussian, each pass into
+# a named intermediate), which docs/decisions/effects-execution.md §6 excluded
+# from the single-texture path. This body folds the two passes into one 9x9
+# kernel over tex, so no second distinct input is needed. The body is
+# effect.glsl beside this manifest; [wgsl].entry is documentation only and is
+# not consulted on the GLSL execution path.
+
+format = 2
+
+[effect]
+id = "genesis.gaussian-blur"
+name = "Gaussian Blur"
+kind = "effect"
+category = "Blur"
+order = 20
+intensity = "radius"
+description = "A soft, even blur."
+
+[[param]]
+key = "radius"
+label = "Radius"
+min = 1
+max = 50
+default = 10
+step = 1
+unit = "px"
+
+[wgsl]
+entry = "effect.glsl"

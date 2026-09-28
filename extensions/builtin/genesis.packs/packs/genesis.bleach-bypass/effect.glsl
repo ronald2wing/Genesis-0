@@ -1,0 +1,15 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// SPDX-FileCopyrightText: 2026 Genesis-0 contributors
+//
+// Re-authored from Concat's concat-effects package `concat.bleach-bypass`,
+// SPDX-License-Identifier: GPL-3.0-or-later,
+// SPDX-FileCopyrightText: 2026 Jareer and Concat contributors.
+//
+// The fragment BODY; see genesis.exposure/effect.glsl for the contract.
+
+void main () {
+    vec4 c = texture2D (tex, v_texcoord);
+    float l = dot (c.rgb, vec3 (0.2126, 0.7152, 0.0722));
+    vec3 s = mix (vec3 (l), c.rgb, 0.35);
+    gl_FragColor = vec4 ((s - vec3 (0.5)) * 1.25 + vec3 (0.5), c.a);
+}

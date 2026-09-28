@@ -1,0 +1,29 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# SPDX-FileCopyrightText: 2026 Genesis-0 contributors
+#
+# The body is effect.glsl beside this manifest; [wgsl].entry is documentation
+# only and is not consulted on the GLSL execution path.
+
+format = 2
+
+[effect]
+id = "genesis.crosshatch"
+name = "Crosshatch"
+kind = "effect"
+category = "Stylize"
+order = 54
+intensity = "strength"
+aliases = ["crosshatch"]
+description = "Shading drawn as crossing strokes, dense where the picture is busy."
+
+[[param]]
+key = "strength"
+label = "Strength"
+min = 0
+max = 100
+default = 40
+step = 1
+unit = "%"
+
+[wgsl]
+entry = "effect.glsl"

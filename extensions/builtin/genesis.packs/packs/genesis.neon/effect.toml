@@ -1,0 +1,42 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# SPDX-FileCopyrightText: 2026 Genesis-0 contributors
+#
+# Re-authored from Concat's concat-effects package `concat.neon`,
+# SPDX-License-Identifier: GPL-3.0-or-later,
+# SPDX-FileCopyrightText: 2026 Jareer and Concat contributors.
+#
+# The body is effect.glsl beside this manifest; [wgsl].entry is documentation
+# only and is not consulted on the GLSL execution path.
+
+format = 2
+
+[effect]
+id = "genesis.neon"
+name = "Neon"
+kind = "filter"
+category = "Stylize"
+order = 48
+intensity = "glow"
+aliases = ["neon"]
+description = "Magenta shadows and cyan highlights, hard contrast, and the lights blooming."
+
+[[param]]
+key = "glow"
+label = "Glow"
+min = 0
+max = 100
+default = 60
+step = 1
+unit = "%"
+
+[[param]]
+key = "punch"
+label = "Punch"
+min = 0
+max = 100
+default = 50
+step = 1
+unit = "%"
+
+[wgsl]
+entry = "effect.glsl"

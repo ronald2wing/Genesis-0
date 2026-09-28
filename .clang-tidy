@@ -1,0 +1,9 @@
+# Canonical check set: the default `Checks` list from ZedThree/clang-tidy-review,
+# the most-used clang-tidy CI action. The repo rule is to keep lint/format at
+# the popular defaults rather than a hand-picked narrow set, so this file is
+# that default verbatim (modulo this comment).
+Checks: >
+  -*,performance-*,readability-*,bugprone-*,clang-analyzer-*,cppcoreguidelines-*,mpi-*,misc-*
+WarningsAsErrors: ''
+HeaderFilterRegex: '(src|tests)/.*'
+FormatStyle: file

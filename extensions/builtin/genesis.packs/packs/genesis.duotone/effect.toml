@@ -1,0 +1,38 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# SPDX-FileCopyrightText: 2026 Genesis-0 contributors
+#
+# The body is effect.glsl beside this manifest; [wgsl].entry is documentation
+# only and is not consulted on the GLSL execution path.
+
+format = 2
+
+[effect]
+id = "genesis.duotone"
+name = "Duotone"
+kind = "filter"
+category = "Color"
+order = 47
+description = "Every shade printed as a hue between two inks, the shadows one colour and the highlights another."
+
+[[param]]
+key = "shadow_hue"
+label = "Shadow hue"
+min = 0
+max = 360
+default = 240
+step = 1
+unit = "deg"
+animate = true
+
+[[param]]
+key = "highlight_hue"
+label = "Highlight hue"
+min = 0
+max = 360
+default = 45
+step = 1
+unit = "deg"
+animate = true
+
+[wgsl]
+entry = "effect.glsl"

@@ -1,0 +1,48 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# SPDX-FileCopyrightText: 2026 Genesis-0 contributors
+#
+# The body is effect.glsl beside this manifest; [wgsl].entry is documentation
+# only and is not consulted on the GLSL execution path.
+
+format = 2
+
+[effect]
+id = "genesis.light-leak"
+name = "Light Leak"
+kind = "effect"
+category = "Light"
+order = 70
+description = "A coloured bloom leaking in from one side, a stray light through the gate."
+
+[[param]]
+key = "strength"
+label = "Strength"
+min = 0
+max = 100
+default = 40
+step = 1
+unit = "%"
+
+[[param]]
+key = "angle"
+label = "Angle"
+min = 0
+max = 360
+default = 0
+step = 1
+unit = "deg"
+animate = true
+
+[[param]]
+key = "color"
+label = "Tint"
+type = "enum"
+min = 0
+max = 2
+default = 0
+step = 1
+values = [0, 1, 2]
+labels = ["Warm", "Cool", "Green"]
+
+[wgsl]
+entry = "effect.glsl"

@@ -1,0 +1,32 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# SPDX-FileCopyrightText: 2026 Genesis-0 contributors
+#
+# Re-authored from Concat's concat-effects package `concat.sharpen`,
+# SPDX-License-Identifier: GPL-3.0-or-later,
+# SPDX-FileCopyrightText: 2026 Jareer and Concat contributors.
+#
+# The body is effect.glsl beside this manifest; [wgsl].entry is documentation
+# only and is not consulted on the GLSL execution path.
+
+format = 2
+
+[effect]
+id = "genesis.sharpen"
+name = "Sharpen"
+kind = "effect"
+category = "Basic"
+order = 13
+intensity = "amount"
+aliases = ["sharpen"]
+description = "Crisper edges."
+
+[[param]]
+key = "amount"
+label = "Amount"
+min = 0.2
+max = 3
+default = 1
+step = 0.05
+
+[wgsl]
+entry = "effect.glsl"

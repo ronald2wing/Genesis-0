@@ -1,0 +1,27 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# SPDX-FileCopyrightText: 2026 Genesis-0 contributors
+#
+# The body is effect.glsl beside this manifest; [wgsl].entry is documentation
+# only and is not consulted on the GLSL execution path.
+
+format = 2
+
+[effect]
+id = "genesis.ascii"
+name = "ASCII"
+kind = "effect"
+category = "Stylize"
+order = 45
+description = "The picture re-drawn as a grid of glyph cells, each shaded by its brightness."
+
+[[param]]
+key = "columns"
+label = "Columns"
+type = "int"
+min = 8
+max = 120
+default = 64
+step = 1
+
+[wgsl]
+entry = "effect.glsl"

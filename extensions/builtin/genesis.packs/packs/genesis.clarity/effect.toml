@@ -1,0 +1,28 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# SPDX-FileCopyrightText: 2026 Genesis-0 contributors
+#
+# The body is effect.glsl beside this manifest; [wgsl].entry is documentation
+# only and is not consulted on the GLSL execution path.
+
+format = 2
+
+[effect]
+id = "genesis.clarity"
+name = "Clarity"
+kind = "filter"
+category = "Color"
+order = 33
+intensity = "strength"
+description = "Local contrast around the midtones, edges and texture lifted without the blacks."
+
+[[param]]
+key = "strength"
+label = "Strength"
+min = -100
+max = 100
+default = 30
+step = 1
+unit = "%"
+
+[wgsl]
+entry = "effect.glsl"

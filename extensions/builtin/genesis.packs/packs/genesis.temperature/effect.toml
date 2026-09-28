@@ -1,0 +1,33 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# SPDX-FileCopyrightText: 2026 Genesis-0 contributors
+#
+# Re-authored from Concat's concat-effects package `concat.white-balance`,
+# SPDX-License-Identifier: GPL-3.0-or-later,
+# SPDX-FileCopyrightText: 2026 Jareer and Concat contributors.
+#
+# The body is effect.glsl beside this manifest; [wgsl].entry is documentation
+# only and is not consulted on the GLSL execution path.
+
+format = 2
+
+[effect]
+id = "genesis.temperature"
+name = "Temperature"
+kind = "filter"
+category = "Color"
+order = 13
+intensity = "temperature"
+description = "Warmer or cooler, as the camera's white balance would."
+
+[[param]]
+key = "temperature"
+label = "Temperature"
+min = 2000
+max = 11000
+default = 6500
+step = 50
+unit = "K"
+animate = true
+
+[wgsl]
+entry = "effect.glsl"

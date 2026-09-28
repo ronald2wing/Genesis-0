@@ -1,0 +1,48 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# SPDX-FileCopyrightText: 2026 Genesis-0 contributors
+#
+# The body is effect.glsl beside this manifest; [wgsl].entry is documentation
+# only and is not consulted on the GLSL execution path.
+
+format = 2
+
+[effect]
+id = "genesis.hue-saturation-lightness"
+name = "Hue, Saturation & Lightness"
+kind = "effect"
+category = "Color"
+order = 21
+description = "Hue turned in the colour plane, saturation pulled towards or away from grey, and lightness offset, as one adjustment."
+
+[[param]]
+key = "hue"
+label = "Hue"
+min = -180
+max = 180
+default = 0
+step = 1
+unit = "deg"
+animate = true
+
+[[param]]
+key = "saturation"
+label = "Saturation"
+min = -100
+max = 100
+default = 0
+step = 1
+unit = "%"
+animate = true
+
+[[param]]
+key = "lightness"
+label = "Lightness"
+min = -100
+max = 100
+default = 0
+step = 1
+unit = "%"
+animate = true
+
+[wgsl]
+entry = "effect.glsl"

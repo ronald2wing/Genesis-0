@@ -1,0 +1,34 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// SPDX-FileCopyrightText: 2026 Genesis-0 contributors
+
+syntax = "proto3";
+
+package genesis.v1;
+
+// The Genesis host JSON-RPC API, tunnelled over gRPC. One Call carries one
+// JSON-RPC 2.0 request object and returns one JSON-RPC 2.0 reply object,
+// routed through the exact codec the stdio `api` verb and the Unix-socket
+// `serve` verb use, so every existing API method is reachable over gRPC with
+// no per-method protobuf surface to keep in sync.
+//
+// A streaming Events RPC is deliberately absent: the engine-free host runs no
+// jobs, so nothing would emit events yet (api::Event is declared for wire
+// completeness only). Adding it would mean an async server and a queue no
+// caller feeds.
+service Genesis {
+  // One JSON-RPC round-trip. `json` is a JSON-RPC 2.0 request object (as the
+  // stdio transport accepts); the reply `json` is the matching JSON-RPC 2.0
+  // reply object. Malformed input comes back as a JSON-RPC error reply rather
+  // than a gRPC status, so callers see exactly what stdio would have written.
+  // Authentication failures are the one exception: they are gRPC statuses
+  // (UNAUTHENTICATED), raised before the request reaches dispatch.
+  rpc Call(CallRequest) returns (CallReply);
+}
+
+message CallRequest {
+  string json = 1;
+}
+
+message CallReply {
+  string json = 1;
+}

@@ -1,0 +1,39 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# SPDX-FileCopyrightText: 2026 Genesis-0 contributors
+#
+# Re-authored from Concat's concat-effects package `concat.vignette`,
+# SPDX-License-Identifier: GPL-3.0-or-later,
+# SPDX-FileCopyrightText: 2026 Jareer and Concat contributors.
+#
+# The body is effect.glsl beside this manifest; [wgsl].entry is documentation
+# only and is not consulted on the GLSL execution path.
+
+format = 2
+
+[effect]
+id = "genesis.vignette"
+name = "Vignette"
+kind = "effect"
+category = "Stylize"
+order = 40
+intensity = "strength"
+aliases = ["vignette"]
+description = "Darkened corners that draw the eye to the middle."
+
+[[param]]
+key = "strength"
+label = "Strength"
+min = 10
+max = 100
+default = 50
+step = 1
+unit = "%"
+
+# A derived uniform: the host computes strength / 100 clamped to 0..1 from the
+# strength knob, so the body reads a ready fraction instead of doing the math.
+[[uniform]]
+key = "strength_norm"
+expr = "clamp(strength / 100.0, 0.0, 1.0)"
+
+[wgsl]
+entry = "effect.glsl"

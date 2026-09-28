@@ -1,0 +1,45 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# SPDX-FileCopyrightText: 2026 Genesis-0 contributors
+#
+# The body is effect.glsl beside this manifest; [wgsl].entry is documentation
+# only and is not consulted on the GLSL execution path.
+
+format = 2
+
+[effect]
+id = "genesis.curves"
+name = "Curves"
+kind = "effect"
+category = "Color"
+order = 18
+description = "A tone curve shaped by three knobs: the shadows raised or crushed, the midtones bent, and the highlights lifted or dimmed."
+
+[[param]]
+key = "shadows"
+label = "Shadows"
+min = -1
+max = 1
+default = 0
+step = 0.01
+animate = true
+
+[[param]]
+key = "midtones"
+label = "Midtones"
+min = -1
+max = 1
+default = 0
+step = 0.01
+animate = true
+
+[[param]]
+key = "highlights"
+label = "Highlights"
+min = -1
+max = 1
+default = 0
+step = 0.01
+animate = true
+
+[wgsl]
+entry = "effect.glsl"

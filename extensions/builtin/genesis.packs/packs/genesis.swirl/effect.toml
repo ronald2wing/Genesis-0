@@ -1,0 +1,30 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# SPDX-FileCopyrightText: 2026 Genesis-0 contributors
+#
+# The body is effect.glsl beside this manifest; [wgsl].entry is documentation
+# only and is not consulted on the GLSL execution path.
+
+format = 2
+
+[effect]
+id = "genesis.swirl"
+name = "Swirl"
+kind = "effect"
+category = "Distort"
+order = 59
+intensity = "strength"
+aliases = ["swirl"]
+description = "The picture twisted around its middle, tighter in the centre."
+
+[[param]]
+key = "strength"
+label = "Strength"
+min = -100
+max = 100
+default = 40
+step = 1
+unit = "%"
+animate = true
+
+[wgsl]
+entry = "effect.glsl"

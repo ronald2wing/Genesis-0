@@ -1,0 +1,38 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# SPDX-FileCopyrightText: 2026 Genesis-0 contributors
+#
+# The body is effect.glsl beside this manifest; [wgsl].entry is documentation
+# only and is not consulted on the GLSL execution path.
+
+format = 2
+
+[effect]
+id = "genesis.kaleidoscope"
+name = "Kaleidoscope"
+kind = "effect"
+category = "Transform"
+order = 62
+aliases = ["kaleidoscope"]
+description = "The picture reflected around the middle into a repeating mandala."
+
+[[param]]
+key = "segments"
+label = "Segments"
+type = "int"
+min = 3
+max = 12
+default = 6
+step = 1
+
+[[param]]
+key = "angle"
+label = "Angle"
+min = -180
+max = 180
+default = 0
+step = 1
+unit = "deg"
+animate = true
+
+[wgsl]
+entry = "effect.glsl"

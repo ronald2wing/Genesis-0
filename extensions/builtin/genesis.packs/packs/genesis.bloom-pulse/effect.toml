@@ -1,0 +1,47 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# SPDX-FileCopyrightText: 2026 Genesis-0 contributors
+#
+# Re-authored from Concat's concat-effects package `concat.bloom-pulse`,
+# SPDX-License-Identifier: GPL-3.0-or-later,
+# SPDX-FileCopyrightText: 2026 Jareer and Concat contributors.
+#
+# The original drew the highlights' light `across` then `down` (a Gaussian at a
+# quarter of the layer's pixels) and screened it back as the amount breathed.
+# Two things do not carry to the single-texture path: the two passes (folded
+# into one 9x9 kernel over tex, no second distinct input needed) and the
+# time-driven `speed` knob (no time uniform exists here). The breathing is
+# therefore a keyframed `pulse` multiplier the host animates, in place of the
+# original's continuous sine. The body is effect.glsl beside this manifest;
+# [wgsl].entry is documentation only.
+
+format = 2
+
+[effect]
+id = "genesis.bloom-pulse"
+name = "Bloom Pulse"
+kind = "effect"
+category = "Light"
+order = 72
+intensity = "amount"
+description = "A soft bloom over the highlights that breathes in and out."
+
+[[param]]
+key = "amount"
+label = "Amount"
+min = 0
+max = 100
+default = 50
+step = 1
+unit = "%"
+
+[[param]]
+key = "pulse"
+label = "Pulse"
+min = 0
+max = 1
+default = 1
+step = 0.01
+animate = true
+
+[wgsl]
+entry = "effect.glsl"

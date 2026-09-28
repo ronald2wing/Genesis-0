@@ -1,0 +1,38 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# SPDX-FileCopyrightText: 2026 Genesis-0 contributors
+#
+# The body is effect.glsl beside this manifest; [wgsl].entry is documentation
+# only and is not consulted on the GLSL execution path.
+
+format = 2
+
+[effect]
+id = "genesis.vhs"
+name = "VHS"
+kind = "filter"
+category = "Retro"
+order = 41
+intensity = "strength"
+aliases = ["vhs", "videotape"]
+description = "Worn tape: jumping tracking bands, fringed colour and scanlines."
+
+[[param]]
+key = "strength"
+label = "Strength"
+min = 0
+max = 100
+default = 60
+step = 1
+unit = "%"
+
+[[param]]
+key = "tracking"
+label = "Tracking"
+min = 0
+max = 100
+default = 15
+step = 1
+unit = "%"
+
+[wgsl]
+entry = "effect.glsl"

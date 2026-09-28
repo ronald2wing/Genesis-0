@@ -1,0 +1,34 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# SPDX-FileCopyrightText: 2026 Genesis-0 contributors
+#
+# Re-authored from Concat's concat-effects package `concat.halftone`,
+# SPDX-License-Identifier: GPL-3.0-or-later,
+# SPDX-FileCopyrightText: 2026 Jareer and Concat contributors.
+#
+# The body is effect.glsl beside this manifest; [wgsl].entry is documentation
+# only and is not consulted on the GLSL execution path.
+
+format = 2
+
+[effect]
+id = "genesis.halftone"
+name = "Halftone"
+kind = "effect"
+category = "Stylize"
+order = 49
+intensity = "size"
+aliases = ["halftone"]
+description = "The picture reduced to a grid of black and white dots."
+
+[[param]]
+key = "size"
+label = "Dot size"
+type = "int"
+min = 4
+max = 40
+default = 6
+step = 1
+unit = "px"
+
+[wgsl]
+entry = "effect.glsl"

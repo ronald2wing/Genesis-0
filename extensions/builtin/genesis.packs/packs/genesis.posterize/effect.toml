@@ -1,0 +1,33 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# SPDX-FileCopyrightText: 2026 Genesis-0 contributors
+#
+# Re-authored from Concat's concat-effects package `concat.posterize`,
+# SPDX-License-Identifier: GPL-3.0-or-later,
+# SPDX-FileCopyrightText: 2026 Jareer and Concat contributors.
+#
+# The body is effect.glsl beside this manifest; [wgsl].entry is documentation
+# only and is not consulted on the GLSL execution path.
+
+format = 2
+
+[effect]
+id = "genesis.posterize"
+name = "Posterize"
+kind = "effect"
+category = "Stylize"
+order = 43
+intensity = "levels"
+aliases = ["posterize"]
+description = "Flat bands of colour, like a screen print."
+
+[[param]]
+key = "levels"
+label = "Levels"
+type = "int"
+min = 2
+max = 8
+default = 4
+step = 1
+
+[wgsl]
+entry = "effect.glsl"

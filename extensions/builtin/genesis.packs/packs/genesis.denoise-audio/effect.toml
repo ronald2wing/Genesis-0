@@ -1,0 +1,41 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# SPDX-FileCopyrightText: 2026 Genesis-0 contributors
+#
+# An audio Pack: the `[audio]` table drives the stock `webrtcdsp` element
+# (gst-plugins-bad/webrtc) as a noise suppressor. `noise-suppression` is
+# enabled unconditionally; `strength` picks how aggressively the WebRTC
+# suppressor works. The element only negotiates 8/16/32/48 kHz audio, so a clip
+# at another rate keeps the filter skipped - a graceful degrade, never a failed
+# build - the same as a host that lacks the element.
+
+format = 2
+
+[effect]
+id = "genesis.denoise-audio"
+name = "Audio Denoise"
+kind = "audio"
+category = "Audio"
+order = 3
+description = "WebRTC noise suppression for a clip's sound, from a gentle low to a very aggressive clean-up."
+
+[[param]]
+key = "strength"
+label = "Strength"
+type = "enum"
+min = 0
+max = 3
+default = 1
+step = 1
+values = [0, 1, 2, 3]
+labels = ["Low", "Moderate", "High", "Very High"]
+
+[audio]
+element = "webrtcdsp"
+
+[[audio.param]]
+key = "noise-suppression"
+expr = "1"
+
+[[audio.param]]
+key = "noise-suppression-level"
+expr = "strength"

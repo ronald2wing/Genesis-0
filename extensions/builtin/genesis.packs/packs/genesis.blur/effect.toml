@@ -1,0 +1,34 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# SPDX-FileCopyrightText: 2026 Genesis-0 contributors
+#
+# Re-authored from Concat's concat-effects package `concat.gaussian-blur`
+# (folded into a single pass, the named intermediates dropped),
+# SPDX-License-Identifier: GPL-3.0-or-later,
+# SPDX-FileCopyrightText: 2026 Jareer and Concat contributors.
+#
+# The body is effect.glsl beside this manifest; [wgsl].entry is documentation
+# only and is not consulted on the GLSL execution path.
+
+format = 2
+
+[effect]
+id = "genesis.blur"
+name = "Blur"
+kind = "effect"
+category = "Blur"
+order = 20
+intensity = "radius"
+aliases = ["gaussian-blur"]
+description = "A soft, even blur."
+
+[[param]]
+key = "radius"
+label = "Radius"
+min = 1
+max = 50
+default = 10
+step = 1
+unit = "px"
+
+[wgsl]
+entry = "effect.glsl"

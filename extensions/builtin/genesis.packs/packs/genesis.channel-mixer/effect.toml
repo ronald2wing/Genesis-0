@@ -1,0 +1,99 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# SPDX-FileCopyrightText: 2026 Genesis-0 contributors
+#
+# The body is effect.glsl beside this manifest; [wgsl].entry is documentation
+# only and is not consulted on the GLSL execution path.
+
+format = 2
+
+[effect]
+id = "genesis.channel-mixer"
+name = "Channel Mixer"
+kind = "effect"
+category = "Color"
+order = 49
+description = "Remix the red, green and blue channels with nine independent weights."
+
+[[param]]
+key = "rr"
+label = "Red from Red"
+group = "Red output"
+min = -2
+max = 2
+default = 1
+step = 0.01
+
+[[param]]
+key = "rg"
+label = "Red from Green"
+group = "Red output"
+min = -2
+max = 2
+default = 0
+step = 0.01
+
+[[param]]
+key = "rb"
+label = "Red from Blue"
+group = "Red output"
+min = -2
+max = 2
+default = 0
+step = 0.01
+
+[[param]]
+key = "gr"
+label = "Green from Red"
+group = "Green output"
+min = -2
+max = 2
+default = 0
+step = 0.01
+
+[[param]]
+key = "gg"
+label = "Green from Green"
+group = "Green output"
+min = -2
+max = 2
+default = 1
+step = 0.01
+
+[[param]]
+key = "gb"
+label = "Green from Blue"
+group = "Green output"
+min = -2
+max = 2
+default = 0
+step = 0.01
+
+[[param]]
+key = "br"
+label = "Blue from Red"
+group = "Blue output"
+min = -2
+max = 2
+default = 0
+step = 0.01
+
+[[param]]
+key = "bg"
+label = "Blue from Green"
+group = "Blue output"
+min = -2
+max = 2
+default = 0
+step = 0.01
+
+[[param]]
+key = "bb"
+label = "Blue from Blue"
+group = "Blue output"
+min = -2
+max = 2
+default = 1
+step = 0.01
+
+[wgsl]
+entry = "effect.glsl"

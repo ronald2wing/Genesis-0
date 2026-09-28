@@ -1,0 +1,28 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# SPDX-FileCopyrightText: 2026 Genesis-0 contributors
+#
+# The body is effect.glsl beside this manifest; [wgsl].entry is documentation
+# only and is not consulted on the GLSL execution path.
+
+format = 2
+
+[effect]
+id = "genesis.invert"
+name = "Invert"
+kind = "effect"
+category = "Color"
+order = 14
+intensity = "strength"
+description = "Negative colour, mixed from none up to a full invert."
+
+[[param]]
+key = "strength"
+label = "Strength"
+min = 0
+max = 100
+default = 100
+step = 1
+unit = "%"
+
+[wgsl]
+entry = "effect.glsl"

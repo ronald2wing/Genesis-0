@@ -1,0 +1,38 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# SPDX-FileCopyrightText: 2026 Genesis-0 contributors
+#
+# The body is effect.glsl beside this manifest; [wgsl].entry is documentation
+# only and is not consulted on the GLSL execution path.
+
+format = 2
+
+[effect]
+id = "genesis.cartoon"
+name = "Cartoon"
+kind = "effect"
+category = "Stylize"
+order = 46
+intensity = "strength"
+aliases = ["toon", "cel-shade"]
+description = "Flat colour bands and darkened edges, the look of cel animation."
+
+[[param]]
+key = "levels"
+label = "Levels"
+type = "int"
+min = 2
+max = 8
+default = 4
+step = 1
+
+[[param]]
+key = "strength"
+label = "Outline"
+min = 0
+max = 100
+default = 50
+step = 1
+unit = "%"
+
+[wgsl]
+entry = "effect.glsl"

@@ -1,0 +1,63 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# SPDX-FileCopyrightText: 2026 Genesis-0 contributors
+#
+# A CPU-only effect: the passes below draw named intermediates, which the
+# glshader (single-texture) route cannot express, so there is no effect.glsl
+# body. The [cpu] table is the fallback: the engine maps the knobs onto the
+# stock `videobalance` element and runs it instead, one property per knob.
+
+format = 2
+
+[effect]
+id = "genesis.video-balance"
+name = "Video Balance"
+kind = "effect"
+category = "Color"
+order = 15
+intensity = "brightness"
+description = "Brightness, contrast and saturation through a stock CPU filter."
+
+[[param]]
+key = "brightness"
+label = "Brightness"
+min = -1
+max = 1
+default = 0
+step = 0.01
+
+[[param]]
+key = "contrast"
+label = "Contrast"
+min = 0
+max = 2
+default = 1
+step = 0.01
+
+[[param]]
+key = "saturation"
+label = "Saturation"
+min = 0
+max = 2
+default = 1
+step = 0.01
+
+[[wgsl.pass]]
+target = "down"
+
+[[wgsl.pass]]
+target = "balance"
+
+[cpu]
+element = "videobalance"
+
+[[cpu.param]]
+key = "brightness"
+expr = "brightness"
+
+[[cpu.param]]
+key = "contrast"
+expr = "contrast"
+
+[[cpu.param]]
+key = "saturation"
+expr = "saturation"

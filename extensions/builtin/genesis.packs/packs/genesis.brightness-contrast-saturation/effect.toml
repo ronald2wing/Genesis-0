@@ -1,0 +1,48 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# SPDX-FileCopyrightText: 2026 Genesis-0 contributors
+#
+# The body is effect.glsl beside this manifest; [wgsl].entry is documentation
+# only and is not consulted on the GLSL execution path.
+
+format = 2
+
+[effect]
+id = "genesis.brightness-contrast-saturation"
+name = "Brightness, Contrast & Saturation"
+kind = "effect"
+category = "Color"
+order = 17
+description = "The three everyday adjustments in one place: brightness offsets the picture, contrast spreads it about middle grey, and saturation pulls colour towards or away from each pixel's own brightness."
+
+[[param]]
+key = "brightness"
+label = "Brightness"
+min = -100
+max = 100
+default = 0
+step = 1
+unit = "%"
+animate = true
+
+[[param]]
+key = "contrast"
+label = "Contrast"
+min = -100
+max = 100
+default = 0
+step = 1
+unit = "%"
+animate = true
+
+[[param]]
+key = "saturation"
+label = "Saturation"
+min = -100
+max = 100
+default = 0
+step = 1
+unit = "%"
+animate = true
+
+[wgsl]
+entry = "effect.glsl"

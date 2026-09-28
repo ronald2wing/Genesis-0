@@ -1,0 +1,15 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// SPDX-FileCopyrightText: 2026 Genesis-0 contributors
+//
+// The fragment BODY; see genesis.exposure/effect.glsl for the contract.
+// Lift offsets the shadows, gamma bends the midtones and gain scales the
+// whole, then the grade is mixed back by strength.
+
+void main () {
+    vec4 c = texture2D (tex, v_texcoord);
+    vec3 rgb = c.rgb;
+    rgb = rgb + lift * (1.0 - rgb);
+    rgb = pow (clamp (rgb, 0.0, 1.0), vec3 (1.0 / gamma));
+    rgb = rgb * gain;
+    gl_FragColor = vec4 (mix (c.rgb, rgb, strength / 100.0), c.a);
+}

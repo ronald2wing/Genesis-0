@@ -1,0 +1,33 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# SPDX-FileCopyrightText: 2026 Genesis-0 contributors
+#
+# Re-authored from Concat's concat-effects package `concat.vhs`,
+# SPDX-License-Identifier: GPL-3.0-or-later,
+# SPDX-FileCopyrightText: 2026 Jareer and Concat contributors.
+#
+# The body is effect.glsl beside this manifest; [wgsl].entry is documentation
+# only and is not consulted on the GLSL execution path.
+
+format = 2
+
+[effect]
+id = "genesis.crt"
+name = "CRT"
+kind = "effect"
+category = "Stylize"
+order = 52
+intensity = "strength"
+aliases = ["crt"]
+description = "A curved tube: fringed colour, scanlines and dimmed corners."
+
+[[param]]
+key = "strength"
+label = "Strength"
+min = 0
+max = 100
+default = 60
+step = 1
+unit = "%"
+
+[wgsl]
+entry = "effect.glsl"

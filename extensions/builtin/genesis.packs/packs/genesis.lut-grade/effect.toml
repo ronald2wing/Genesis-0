@@ -1,0 +1,51 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# SPDX-FileCopyrightText: 2026 Genesis-0 contributors
+#
+# The body is effect.glsl beside this manifest; [wgsl].entry is documentation
+# only and is not consulted on the GLSL execution path.
+#
+# `lut` selects one of the eight shipped .cube 3D LUT tables under
+# assets/luts/. On the host's LUT path the enum value is an index into the
+# directory's sorted .cube files (render::available_luts over
+# asset_root()/"luts"), and the selected file is parsed (LutLoader) and bound
+# as the pass's 3D texture (ShaderPass::lut), which the `lutgrade` GstGLFilter
+# element uploads and samples. The enum order here therefore follows that sort
+# - bleach_bypass first, bw_high_contrast second, and so on - so each label
+# names the table its index binds. The GLSL body beside this manifest applies
+# a fixed approximation of each cast instead, since glshader binds one 2D
+# texture and cannot sample a 3D LUT; it stays the in-engine fallback whenever
+# the host cannot reach or parse the selected table.
+
+format = 2
+
+[effect]
+id = "genesis.lut-grade"
+name = "LUT Grade"
+kind = "filter"
+category = "Color"
+order = 48
+intensity = "strength"
+description = "A colour look from one of the shipped .cube 3D LUTs, mixed from full strength down to the untouched picture."
+
+[[param]]
+key = "lut"
+label = "LUT"
+type = "enum"
+min = 0
+max = 7
+default = 0
+step = 1
+values = [0, 1, 2, 3, 4, 5, 6, 7]
+labels = ["Bleach Bypass", "Black & White", "Cool Moonlight", "Filmic Contrast", "Teal Orange", "Vibrant Pop", "Vintage Fade", "Warm Daylight"]
+
+[[param]]
+key = "strength"
+label = "Strength"
+min = 0
+max = 100
+default = 100
+step = 1
+unit = "%"
+
+[wgsl]
+entry = "effect.glsl"

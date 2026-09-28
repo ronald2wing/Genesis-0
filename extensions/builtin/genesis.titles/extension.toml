@@ -1,0 +1,21 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# SPDX-FileCopyrightText: 2026 Genesis-0 contributors
+
+# The builtin title-gallery extension: the in-house title templates surfaced as
+# an inspector panel. There is no `entry` (no shared library): the panel is
+# pure QML and reaches the host through the `extensions.call` bridge, so the
+# extension is data + UI only. The panel is a bare file name beside this
+# manifest, as the parser requires.
+
+format = 2
+
+[extension]
+id = "genesis.titles"
+name = "Genesis Titles"
+kind = "native"
+version = 1
+api = 1
+
+[[panel]]
+label = "Titles"
+qml = "TitlesPanel.qml"

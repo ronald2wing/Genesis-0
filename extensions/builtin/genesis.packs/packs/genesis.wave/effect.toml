@@ -1,0 +1,48 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# SPDX-FileCopyrightText: 2026 Genesis-0 contributors
+#
+# The body is effect.glsl beside this manifest; [wgsl].entry is documentation
+# only and is not consulted on the GLSL execution path.
+
+format = 2
+
+[effect]
+id = "genesis.wave"
+name = "Wave"
+kind = "effect"
+category = "Distort"
+order = 58
+intensity = "amplitude"
+description = "The picture rippled into a sine wave, one way or the other."
+
+[[param]]
+key = "amplitude"
+label = "Amplitude"
+min = 0
+max = 100
+default = 20
+step = 1
+unit = "%"
+
+[[param]]
+key = "frequency"
+label = "Frequency"
+type = "int"
+min = 1
+max = 20
+default = 4
+step = 1
+
+[[param]]
+key = "direction"
+label = "Direction"
+type = "enum"
+min = 0
+max = 1
+default = 0
+step = 1
+values = [0, 1]
+labels = ["Horizontal", "Vertical"]
+
+[wgsl]
+entry = "effect.glsl"

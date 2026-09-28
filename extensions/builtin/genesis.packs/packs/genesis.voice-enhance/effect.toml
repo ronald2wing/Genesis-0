@@ -1,0 +1,46 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# SPDX-FileCopyrightText: 2026 Genesis-0 contributors
+#
+# An audio Pack: the `[audio]` table drives the stock `equalizer-10bands`
+# element (gst-plugins-good/equalizer). Presence rides the 1889 Hz band (band6)
+# and brilliance the 7523 Hz band (band8), each -24..+12 dB around a flat 0 -
+# the two bands a voice benefits most from lifting.
+
+format = 2
+
+[effect]
+id = "genesis.voice-enhance"
+name = "Voice Enhance"
+kind = "audio"
+category = "Audio"
+order = 4
+description = "Lift the presence and air bands of a voice: presence around 1.9 kHz, brilliance around 7.5 kHz."
+
+[[param]]
+key = "presence"
+label = "Presence"
+min = -24
+max = 12
+default = 0
+step = 0.5
+unit = "dB"
+
+[[param]]
+key = "brilliance"
+label = "Brilliance"
+min = -24
+max = 12
+default = 0
+step = 0.5
+unit = "dB"
+
+[audio]
+element = "equalizer-10bands"
+
+[[audio.param]]
+key = "band6"
+expr = "presence"
+
+[[audio.param]]
+key = "band8"
+expr = "brilliance"

@@ -1,0 +1,47 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# SPDX-FileCopyrightText: 2026 Genesis-0 contributors
+#
+# The body is effect.glsl beside this manifest; [wgsl].entry is documentation
+# only and is not consulted on the GLSL execution path.
+
+format = 2
+
+[effect]
+id = "genesis.outline"
+name = "Outline"
+kind = "effect"
+category = "Stylize"
+order = 42
+description = "A coloured stroke drawn around the edges of a title or overlay."
+
+[[param]]
+key = "thickness"
+label = "Thickness"
+min = 1
+max = 20
+default = 3
+step = 1
+unit = "px"
+
+[[param]]
+key = "strength"
+label = "Strength"
+min = 0
+max = 100
+default = 100
+step = 1
+unit = "%"
+
+[[param]]
+key = "color"
+label = "Color"
+type = "enum"
+min = 0
+max = 5
+default = 0
+step = 1
+values = [0, 1, 2, 3, 4, 5]
+labels = ["White", "Black", "Red", "Yellow", "Cyan", "Magenta"]
+
+[wgsl]
+entry = "effect.glsl"

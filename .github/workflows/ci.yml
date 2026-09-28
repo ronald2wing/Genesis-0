@@ -1,0 +1,268 @@
+# Genesis-0 CI.
+#
+# What this job covers: the engine-free host, the GES adapter, every non-Qt
+# suite (83 of the 99), and the format_check gate (a clang-format dry-run). The
+# sixteen Qt suites and `genesis_app`
+# are SKIPPED here, because Ubuntu 24.04 ships Qt 6.4 and the app needs
+# Qt >= 6.5 (`Qt6GuiPrivate` and `<rhi/qrhi.h>` both arrive in 6.5; neither
+# exists in noble). CMake reports the skip as a warning rather than failing.
+# The app is built and tested on the dev host.
+#
+# The build is verified on Arch (Qt 6.11.2, GStreamer/GES 1.28.6, GCC 16,
+# CMake 4.4, Ninja 1.13): `cmake -S . -B build -G Ninja && cmake --build build
+# && ctest --test-dir build` passes 100/100 with Qt and 84/84 without it (the
+# 100th test is the format_check suite, which runs in both).
+#
+# STATUS: the step bodies below are still unobserved in CI - the dev host
+# cannot run GitHub Actions. Every failure this workflow has produced so far
+# has been in the *environment*, not the code, which is why the package names
+# are each checked against the Ubuntu package DB and why Configure/Build emit
+# their output as annotations (a failed step's annotation carries only its exit
+# code, and the log is behind a sign-in).
+
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    # Stock ubuntu-latest, no Qt from the distro and no Qt action - see
+    # "Install dependencies" below. Ubuntu 24.04's Qt 6.4 cannot build the app
+    # (no Qt6GuiPrivate component, no <rhi/qrhi.h> - both verified absent by
+    # package-contents searches), and two attempts to obtain a newer Qt on the
+    # runner failed (jurplel/install-qt-action died in aqtinstall with an
+    # unreadable error; the archlinux container died in pacman-key, which needs
+    # gnupg the base image does not ship). CMake now degrades instead of
+    # failing: with an old or absent Qt it builds the engine-free host, the GES
+    # adapter and every non-Qt suite, and prints a warning naming the sixteen
+    # Qt suites it skipped. That is what this job covers, and it says so.
+    steps:
+      - uses: actions/checkout@v4
+
+      # System dependencies. The project's own policy (CMakeLists.txt lines
+      # 5-40) is: small libraries are FetchContent-pinned with FIND_PACKAGE_ARGS
+      # floors, so only Qt6, GStreamer/GES, Boost, and the toolchain must be
+      # installed here. Each package maps to a dev-host fact from
+      # docs/dependencies.md; names are Debian's, inferred not run.
+      #
+      #   Toolchain:        cmake, ninja-build, pkg-config, g++ (GCC 13 on
+      #                     noble; supports -std=c++23 and the std::expected /
+      #                     std::unexpected the sources use — verified on GCC 16).
+      #   Boost:            libboost-dev (header-only Boost::boost target).
+      #   Qt6:              qt6-base-dev + qt6-base-private-dev (GuiPrivate —
+      #                     the <rhi/qrhi.h> include needs it, see
+      #                     docs/dependencies.md) + qt6-declarative-dev (Quick/Qml).
+      #   GStreamer base:   libgstreamer1.0-dev + libgstreamer-plugins-base1.0-dev
+      #                     (gstreamer-app/video/pbutils/gl .pc files and the
+      #                     gst/gl/* headers) + gstreamer1.0-plugins-base
+      #                     (videotestsrc, videoconvert, vp8enc, vorbisenc, webmmux).
+      #   GStreamer GL:     gstreamer1.0-gl (glupload/glcolorconvert/glshader
+      #                     elements). The `gst/gl/*.h` headers ship inside
+      #                     libgstreamer-plugins-base1.0-dev (verified by a file
+      #                     contents search for gstglmemory.h). There is NO
+      #                     `libgstreamer-gl1.0-dev` package in noble - only the
+      #                     runtime `libgstreamer-gl1.0-0` - and asking for it is
+      #                     what failed run #5.
+      #   GStreamer plugins: gstreamer1.0-plugins-good, gstreamer1.0-plugins-bad,
+      #                     gstreamer1.0-libav, libgstreamer-plugins-bad1.0-dev.
+      #   GES:              libges-1.0-dev. CMake links GES raw (-lges-1.0), NOT
+      #                     via pkg-config, because Arch ships no .pc for it;
+      #                     the same raw link works on Ubuntu (libges-1.0-dev
+      #                     drops libges-1.0.so on the default linker path).
+      #   Graphene:         libgraphene-1.0-dev (graphene-gobject-1.0, a
+      #                     transitive GStreamer-GL dep the adapter links).
+      #   Headless GL/EGL:  libegl1-mesa-dev + libgles2-mesa-dev (transitional
+      #                     packages that pull the glvnd EGL/GLES dev files) +
+      #                     libgl1-mesa-dri (Mesa's software rasterizer, so GL
+      #                     contexts can be created with no GPU). See the Test
+      #                     step for the runtime caveat.
+      #
+      # VERIFIED AGAINST THE UBUNTU PACKAGE DB (noble, 2026-09-29). Exists:
+      # libges-1.0-dev (universe 1.24.2), qt6-base-private-dev (universe 6.4.2),
+      # libgstreamer-plugins-bad1.0-dev (universe 1.24.2), gstreamer1.0-gl,
+      # libgraphene-1.0-dev, libgles2 (glvnd 1.7.0), libegl1-mesa-dev and
+      # libgles2-mesa-dev (transitional). Does NOT exist: `libgles2-mesa` (run #4)
+      # and `libgstreamer-gl1.0-dev` (run #5) - both removed.
+      #
+      # The install is split into named groups on purpose: a failure annotation
+      # only carries the exit code, not apt's message (logs need a sign-in), so
+      # the failing STEP NAME is the fastest signal available.
+      # Named exactly as the Ubuntu package DB has them (each verified on
+      # noble by a package-contents search): `libgstreamer-gl1.0-dev` and
+      # `libgles2-mesa` do NOT exist, and the `gst/gl/*` headers come from
+      # libgstreamer-plugins-base1.0-dev.
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            cmake ninja-build pkg-config g++ \
+            libboost-dev \
+            libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev \
+            libgstreamer-plugins-bad1.0-dev \
+            gstreamer1.0-plugins-base gstreamer1.0-plugins-good \
+            gstreamer1.0-plugins-bad gstreamer1.0-libav gstreamer1.0-gl \
+            gstreamer1.0-tools \
+            libges-1.0-dev libgraphene-1.0-dev \
+            libegl1-mesa-dev libgles2-mesa-dev \
+            libgl1-mesa-dri libegl1 libgles2 \
+            libegl-mesa0 libglx-mesa0 libgbm1 \
+            xvfb cppcheck
+
+      - name: Report toolchain versions
+        run: |
+          cmake --version | head -1
+          ninja --version
+          g++ --version | head -1
+          # The adapter suites generate their media fixtures with this;
+          # it ships in gstreamer1.0-tools, not with the libs or plugins.
+          command -v gst-launch-1.0 >/dev/null || echo "::error::gst-launch-1.0 missing (gstreamer1.0-tools)"
+          gst-launch-1.0 --version | head -1 || true
+          # The GL suites need a display; a runner has none.
+          command -v xvfb-run >/dev/null || echo "::error::xvfb-run missing (xvfb)"
+          # Qt is expected to be absent here, so its absence is a notice, not an
+          # error: CMake will skip the Qt targets and the job still covers
+          # everything else. The app is built and tested on the dev host.
+          if compgen -G "/usr/lib/*/cmake/Qt6" >/dev/null || [ -d /usr/lib/cmake/Qt6 ]; then
+            echo "::notice::Qt present; the app and its suites will build here too"
+          else
+            echo "::notice::no Qt6 - the Qt application and its 16 suites are skipped by design (Qt >= 6.5 needed)"
+          fi
+          missing=0
+          for m in gstreamer-1.0 gstreamer-app-1.0 gstreamer-video-1.0 \
+                   gstreamer-pbutils-1.0 gstreamer-gl-1.0 graphene-gobject-1.0; do
+            v=$(pkg-config --modversion "$m" 2>/dev/null)
+            if [ -z "$v" ]; then
+              echo "::error::pkg-config module missing: $m"
+              missing=1
+            else
+              echo "pkg-config: $m = $v"
+            fi
+          done
+          [ "$missing" -eq 0 ] || exit 1
+
+      # clang-format is pinned to 22.1.8 so the CI formatter matches the dev
+      # host (also 22.1.8). clang-format's output is NOT stable across
+      # versions: a different version reformats the same file differently, so
+      # an unpinned formatter would make format_check pass or fail spuriously.
+      # Ubuntu noble's apt ships clang-format-18 (not 22), so it is
+      # pip-installed - the PyPI `clang-format` package tracks the LLVM
+      # release. It must be on PATH *before* Configure, because CMake's
+      # find_program(CLANG_FORMAT) registers the format_check suite only when
+      # it finds the tool.
+      - name: Install clang-format 22.1.8
+        run: |
+          python3 -m venv /tmp/clang-format-venv
+          /tmp/clang-format-venv/bin/pip install --quiet clang-format==22.1.8
+          echo "/tmp/clang-format-venv/bin" >> "$GITHUB_PATH"
+          /tmp/clang-format-venv/bin/clang-format --version
+
+      - name: Configure
+        run: |
+          set -o pipefail
+          if ! cmake -S . -B build -G Ninja 2>&1 | tee /tmp/configure.log; then
+            tail -30 /tmp/configure.log | while IFS= read -r line; do
+              echo "::error::configure: $line"
+            done
+            exit 1
+          fi
+
+      # The format gate, after Configure (which registered format_check using
+      # the pinned clang-format above) and before Build, so a formatting
+      # violation fails the job before the longer build starts. format_check
+      # dry-runs `clang-format --dry-run --Werror` over every tracked C++
+      # file; on failure it names each file that would be reformatted, and
+      # those lines are surfaced as ::error:: annotations like Build's.
+      - name: Format check
+        run: |
+          set -o pipefail
+          if ! ctest --test-dir build -R format_check --output-on-failure 2>&1 | tee /tmp/format.log; then
+            grep -E 'clang-format-violations' /tmp/format.log | head -50 | while IFS= read -r line; do
+              echo "::error::format: $line"
+            done || true
+            exit 1
+          fi
+
+      # -Wall -Wextra -Wpedantic -Werror are enforced per-target in
+      # CMakeLists.txt (GENESIS_WARNINGS), so a successful build already proves
+      # warning-cleanliness. There is deliberately no separate lint/warnings
+      # job: it would re-run the same compiler pass to no effect. Warnings and
+      # errors are surfaced as annotations for the same reason as Configure's.
+      - name: Build
+        run: |
+          set -o pipefail
+          if ! cmake --build build 2>&1 | tee /tmp/build.log; then
+            grep -E "error:|FAILED" /tmp/build.log | head -30 | while IFS= read -r line; do
+              echo "::error::build: $line"
+            done
+            exit 1
+          fi
+
+      # cppcheck is the report-only third linter (clang-format + clang-tidy +
+      # cppcheck). It is deliberately non-blocking: findings are a baseline for
+      # inspection, not a gate, and --error-exitcode=0 means the target itself
+      # can never fail the build. continue-on-error also guards the step in
+      # case the target is unregistered (cppcheck install failed). cppcheck is
+      # installed above so find_program(CPPCHECK) registers the `cppcheck`
+      # target at Configure; the run prints every finding, then a summary count
+      # as a notice. Nothing here fails the job.
+      - name: cppcheck (report-only)
+        continue-on-error: true
+        run: |
+          set -o pipefail
+          cmake --build build --target cppcheck 2>&1 | tee /tmp/cppcheck.log
+          findings=$(grep -Ec ': (error|warning|style|performance|portability): ' /tmp/cppcheck.log || true)
+          echo "::notice::cppcheck findings: ${findings}"
+
+      # Run the test suite. The ctest suites that run here are display-free (see
+      # docs/building.md "Which suites need a display"): the engine-free suites
+      # exercise the host core, and the GES suites drive pipelines headlessly.
+      # The GL suites create their OWN EGL context via gst_gl_display_egl_new(),
+      # so they need no X11/Wayland display — but they DO need a working EGL
+      # default display, which on a headless runner Mesa provides through its
+      # "surfaceless" platform with llvmpipe software rendering. EGL_PLATFORM
+      # is set as that hedge; it is inferred, not observed, and may need
+      # adjustment on the actual runner.
+      #
+      # The genesis_app target builds but is NOT registered with ctest, so it
+      # never runs here: it opens a Qt Quick window and needs a real display.
+      # Any future display-dependent test must be excluded from this step the
+      # same way (ctest label + -LE, or a separate job).
+      - name: Test
+        env:
+          # A runner has no GPU and no display, so GL runs on llvmpipe.
+          #
+          # EGL_PLATFORM is deliberately NOT set. The suites ask for
+          # EGL_DEFAULT_DISPLAY, and forcing EGL_PLATFORM=surfaceless made
+          # eglInitialize fail with EGL_NOT_INITIALIZED on a runner with no
+          # /dev/dri - the annotation that finally named it read
+          # 'Failed to initialize egl: EGL_NOT_INITIALIZED'. xvfb-run (below)
+          # supplies a virtual X display instead, which Mesa's EGL resolves
+          # through the X11 platform, with llvmpipe doing the rasterising.
+          LIBGL_ALWAYS_SOFTWARE: '1'
+          GALLIUM_DRIVER: llvmpipe
+        run: |
+          set -o pipefail
+          if ! xvfb-run -a ctest --test-dir build --output-on-failure 2>&1 | tee /tmp/test.log; then
+            # Evidence first, and unconditionally. Two facts about the real
+            # format, learned by running ctest rather than assuming:
+            #
+            #   1. GitHub runs `run:` under `bash -e`, so any grep that finds
+            #      nothing takes the whole step down before the fallback runs.
+            #      Every command below is therefore guarded.
+            #   2. ctest here runs serially, and a failing suite's output is
+            #      printed UNPREFIXED immediately AFTER its "***Failed" line.
+            #      There is no "NN:" prefix to slice on - an earlier version of
+            #      this block invented one by misreading grep -n's own line
+            #      number, and the annotations came back empty twice.
+            echo "The failing suites, and what each printed:"
+            awk '/The following tests FAILED/{flag=1} flag' /tmp/test.log | head -12 |
+              while IFS= read -r line; do echo "::error::failed suite: $line"; done || true
+            awk '/\*\*\*Failed/{c=18} c>0{print; c--}' /tmp/test.log | head -40 |
+              while IFS= read -r line; do
+                [ -n "$line" ] && echo "::error::output: $line"
+              done || true
+            exit 1
+          fi

@@ -1,0 +1,38 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# SPDX-FileCopyrightText: 2026 Genesis-0 contributors
+#
+# The body is effect.glsl beside this manifest; [wgsl].entry is documentation
+# only and is not consulted on the GLSL execution path.
+
+format = 2
+
+[effect]
+id = "genesis.shadows-highlights"
+name = "Shadows & Highlights"
+kind = "effect"
+category = "Color"
+order = 19
+description = "Recover detail at the extremes: the shadows lifted or crushed, and the highlights brightened or pulled back, each without touching the middle."
+
+[[param]]
+key = "shadows"
+label = "Shadows"
+min = -100
+max = 100
+default = 0
+step = 1
+unit = "%"
+animate = true
+
+[[param]]
+key = "highlights"
+label = "Highlights"
+min = -100
+max = 100
+default = 0
+step = 1
+unit = "%"
+animate = true
+
+[wgsl]
+entry = "effect.glsl"

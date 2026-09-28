@@ -1,0 +1,29 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# SPDX-FileCopyrightText: 2026 Genesis-0 contributors
+#
+# The body is effect.glsl beside this manifest; [wgsl].entry is documentation
+# only and is not consulted on the GLSL execution path.
+
+format = 2
+
+[effect]
+id = "genesis.dither"
+name = "Dither"
+kind = "effect"
+category = "Stylize"
+order = 55
+intensity = "levels"
+aliases = ["dither"]
+description = "Black and white ordered dithering, the look of a newsprint halftone."
+
+[[param]]
+key = "levels"
+label = "Levels"
+type = "int"
+min = 2
+max = 8
+default = 4
+step = 1
+
+[wgsl]
+entry = "effect.glsl"

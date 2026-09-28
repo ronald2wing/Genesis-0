@@ -1,0 +1,37 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# SPDX-FileCopyrightText: 2026 Genesis-0 contributors
+#
+# The body is effect.glsl beside this manifest; [wgsl].entry is documentation
+# only and is not consulted on the GLSL execution path.
+
+format = 2
+
+[effect]
+id = "genesis.denoise"
+name = "Denoise"
+kind = "effect"
+category = "Blur"
+order = 21
+intensity = "strength"
+description = "Noise smoothed away while edges hold: neighbours of a similar colour are averaged, with the tolerance set by strength."
+
+[[param]]
+key = "radius"
+label = "Radius"
+min = 1
+max = 10
+default = 2
+step = 1
+unit = "px"
+
+[[param]]
+key = "strength"
+label = "Strength"
+min = 0
+max = 100
+default = 50
+step = 1
+unit = "%"
+
+[wgsl]
+entry = "effect.glsl"

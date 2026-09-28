@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+<defs>
+<linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+<stop offset="0%" stop-color="#F9A8D4"/>
+<stop offset="100%" stop-color="#9D174D"/>
+</linearGradient>
+</defs>
+<rect x="560" y="400" width="800" height="250" fill="#000000" fill-opacity="0.55" rx="24"/>
+<rect x="560" y="400" width="800" height="28" fill="url(#accent)"/>
+<text x="960" y="478" font-family="Inter, Manrope, Segoe UI, Roboto, Helvetica Neue, sans-serif" font-size="26" font-weight="700" fill="#FBCFE8" text-anchor="middle" letter-spacing="6">PREMIERE</text>
+<text x="960" y="574" font-family="Inter, Manrope, Segoe UI, Roboto, Helvetica Neue, sans-serif" font-size="84" font-weight="700" fill="#FFFFFF" text-anchor="middle">Your Title</text>
+<text x="960" y="630" font-family="Inter, Manrope, Segoe UI, Roboto, Helvetica Neue, sans-serif" font-size="40" font-weight="400" fill="#C9C9CF" text-anchor="middle">Subtitle</text>
+</svg>

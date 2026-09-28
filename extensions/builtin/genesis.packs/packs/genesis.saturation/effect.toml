@@ -1,0 +1,33 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# SPDX-FileCopyrightText: 2026 Genesis-0 contributors
+#
+# Re-authored from Concat's concat-effects package `concat.saturation`,
+# SPDX-License-Identifier: GPL-3.0-or-later,
+# SPDX-FileCopyrightText: 2026 Jareer and Concat contributors.
+#
+# The body is effect.glsl beside this manifest; [wgsl].entry is documentation
+# only and is not consulted on the GLSL execution path.
+
+format = 2
+
+[effect]
+id = "genesis.saturation"
+name = "Saturation"
+kind = "effect"
+category = "Color"
+order = 12
+intensity = "amount"
+description = "Richer or greyer colour, about each pixel's own brightness."
+
+[[param]]
+key = "amount"
+label = "Saturation"
+min = -100
+max = 100
+default = 0
+step = 1
+unit = "%"
+animate = true
+
+[wgsl]
+entry = "effect.glsl"

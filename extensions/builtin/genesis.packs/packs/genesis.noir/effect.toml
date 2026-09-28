@@ -1,0 +1,28 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# SPDX-FileCopyrightText: 2026 Genesis-0 contributors
+#
+# The body is effect.glsl beside this manifest; [wgsl].entry is documentation
+# only and is not consulted on the GLSL execution path.
+
+format = 2
+
+[effect]
+id = "genesis.noir"
+name = "Noir"
+kind = "filter"
+category = "Cinematic"
+order = 50
+intensity = "strength"
+description = "Hard black and white with a cool cast, the look of old crime film."
+
+[[param]]
+key = "strength"
+label = "Strength"
+min = 0
+max = 100
+default = 100
+step = 1
+unit = "%"
+
+[wgsl]
+entry = "effect.glsl"

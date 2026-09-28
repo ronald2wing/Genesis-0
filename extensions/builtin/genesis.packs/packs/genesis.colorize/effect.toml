@@ -1,0 +1,47 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# SPDX-FileCopyrightText: 2026 Genesis-0 contributors
+#
+# The body is effect.glsl beside this manifest; [wgsl].entry is documentation
+# only and is not consulted on the GLSL execution path.
+
+format = 2
+
+[effect]
+id = "genesis.colorize"
+name = "Colorize"
+kind = "filter"
+category = "Color"
+order = 17
+intensity = "strength"
+description = "The picture's tones re-tinted with one hue, from a subtle cast to a full wash."
+
+[[param]]
+key = "hue"
+label = "Hue"
+min = 0
+max = 360
+default = 210
+step = 1
+unit = "deg"
+animate = true
+
+[[param]]
+key = "saturation"
+label = "Saturation"
+min = 0
+max = 100
+default = 80
+step = 1
+unit = "%"
+
+[[param]]
+key = "strength"
+label = "Strength"
+min = 0
+max = 100
+default = 100
+step = 1
+unit = "%"
+
+[wgsl]
+entry = "effect.glsl"

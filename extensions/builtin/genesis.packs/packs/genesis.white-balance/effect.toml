@@ -1,0 +1,48 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# SPDX-FileCopyrightText: 2026 Genesis-0 contributors
+#
+# The body is effect.glsl beside this manifest; [wgsl].entry is documentation
+# only and is not consulted on the GLSL execution path.
+
+format = 2
+
+[effect]
+id = "genesis.white-balance"
+name = "White Balance"
+kind = "filter"
+category = "Color"
+order = 16
+intensity = "strength"
+description = "Colour temperature in kelvin and a green-to-magenta tint in one control, as the camera's white balance, mixed from full strength down to the untouched picture."
+
+[[param]]
+key = "temperature"
+label = "Temperature"
+min = 2000
+max = 11000
+default = 6500
+step = 50
+unit = "K"
+animate = true
+
+[[param]]
+key = "tint"
+label = "Tint"
+min = -100
+max = 100
+default = 0
+step = 1
+unit = "%"
+animate = true
+
+[[param]]
+key = "strength"
+label = "Strength"
+min = 0
+max = 100
+default = 100
+step = 1
+unit = "%"
+
+[wgsl]
+entry = "effect.glsl"

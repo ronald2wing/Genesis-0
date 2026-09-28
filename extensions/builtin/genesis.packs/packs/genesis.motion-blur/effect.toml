@@ -1,0 +1,45 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# SPDX-FileCopyrightText: 2026 Genesis-0 contributors
+#
+# Re-authored from Concat's concat-effects package `concat.motion-blur`,
+# SPDX-License-Identifier: GPL-3.0-or-later,
+# SPDX-FileCopyrightText: 2026 Jareer and Concat contributors.
+#
+# The original drew a coarse Gaussian along the line into a named intermediate
+# (`coarse`), then drew straight lines between its samples - a triangle across
+# two of their steps. The intermediate is not expressible on the single-texture
+# path, so both passes fold into one: a triangle-weighted streak along the line,
+# sampled directly from tex, no second distinct input needed. The body is
+# effect.glsl beside this manifest; [wgsl].entry is documentation only.
+
+format = 2
+
+[effect]
+id = "genesis.motion-blur"
+name = "Motion Blur"
+kind = "effect"
+category = "Blur"
+order = 22
+intensity = "length"
+description = "A streak along a line, as if the camera panned."
+
+[[param]]
+key = "length"
+label = "Length"
+min = 2
+max = 60
+default = 18
+step = 1
+unit = "px"
+
+[[param]]
+key = "angle"
+label = "Angle"
+min = -90
+max = 90
+default = 0
+step = 1
+unit = "°"
+
+[wgsl]
+entry = "effect.glsl"
