@@ -1,0 +1,14 @@
+{
+    "app.title": "Genesis-0",
+    "start.recentProjects": "Recent projects",
+    "start.empty": "Nothing here yet — projects you open will appear.",
+    "start.open": "Open",
+    "start.newProject": "New Project",
+    "start.continue": "Continue to Editor",
+    "start.templates": "Templates",
+    "start.templatesEmpty": "No templates yet.",
+    "start.create": "Create",
+    "start.namePlaceholder": "Untitled project",
+    "tray.show": "Show Genesis-0",
+    "tray.quit": "Quit"
+}

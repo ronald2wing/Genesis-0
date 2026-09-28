@@ -1,0 +1,21 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# SPDX-FileCopyrightText: 2026 Genesis-0 contributors
+
+# The builtin interchange extension: a data-only full-window dialog (project
+# interchange to/from other editing formats). There is no `entry` (no shared
+# library): the dialog is pure QML and reaches the host through the
+# `extensions.call` bridge. The dialog is a bare file name beside this manifest,
+# as the parser requires.
+
+[extension]
+id = "genesis.interchange"
+name = "Genesis Interchange"
+version = 4
+api = 1
+# The `files` permission lets this dialog's calls to interchange.export/import
+# (and the other path-taking verbs) name an on-disk file through the host API.
+permissions = ["files"]
+
+[[dialog]]
+label = "Interchange"
+qml = "InterchangeDialog.qml"

@@ -1,0 +1,88 @@
+{
+  "OTIO_SCHEMA": "Timeline.1",
+  "metadata": {},
+  "name": "Simple Cut",
+  "global_start_time": { "OTIO_SCHEMA": "RationalTime.1", "rate": 24, "value": 0 },
+  "tracks": {
+    "OTIO_SCHEMA": "Stack.1",
+    "metadata": {},
+    "name": "tracks",
+    "children": [
+      {
+        "OTIO_SCHEMA": "Track.1",
+        "metadata": {},
+        "name": "V1",
+        "source_range": null,
+        "effects": [],
+        "markers": [],
+        "enabled": true,
+        "children": [
+          {
+            "OTIO_SCHEMA": "Clip.1",
+            "metadata": {},
+            "name": "Shot A",
+            "source_range": {
+              "OTIO_SCHEMA": "TimeRange.1",
+              "start_time": { "OTIO_SCHEMA": "RationalTime.1", "rate": 24, "value": 0 },
+              "duration": { "OTIO_SCHEMA": "RationalTime.1", "rate": 24, "value": 48 }
+            },
+            "effects": [],
+            "markers": [],
+            "enabled": true,
+            "media_reference": {
+              "OTIO_SCHEMA": "ExternalReference.1",
+              "metadata": {},
+              "name": "shot-a.mov",
+              "available_range": {
+                "OTIO_SCHEMA": "TimeRange.1",
+                "start_time": { "OTIO_SCHEMA": "RationalTime.1", "rate": 24, "value": 0 },
+                "duration": { "OTIO_SCHEMA": "RationalTime.1", "rate": 24, "value": 240 }
+              },
+              "target_url": "file:///media/shot-a.mov"
+            }
+          },
+          {
+            "OTIO_SCHEMA": "Clip.1",
+            "metadata": {},
+            "name": "Shot B",
+            "source_range": {
+              "OTIO_SCHEMA": "TimeRange.1",
+              "start_time": { "OTIO_SCHEMA": "RationalTime.1", "rate": 24, "value": 24 },
+              "duration": { "OTIO_SCHEMA": "RationalTime.1", "rate": 24, "value": 24 }
+            },
+            "effects": [],
+            "markers": [],
+            "enabled": true,
+            "media_reference": {
+              "OTIO_SCHEMA": "ExternalReference.1",
+              "metadata": {},
+              "name": "shot-b.mov",
+              "available_range": null,
+              "target_url": "file:///media/shot-b.mov"
+            }
+          },
+          {
+            "OTIO_SCHEMA": "Clip.1",
+            "metadata": {},
+            "name": "Shot C",
+            "source_range": {
+              "OTIO_SCHEMA": "TimeRange.1",
+              "start_time": { "OTIO_SCHEMA": "RationalTime.1", "rate": 24, "value": 0 },
+              "duration": { "OTIO_SCHEMA": "RationalTime.1", "rate": 24, "value": 36 }
+            },
+            "effects": [],
+            "markers": [],
+            "enabled": true,
+            "media_reference": {
+              "OTIO_SCHEMA": "ExternalReference.1",
+              "metadata": {},
+              "name": "shot-c.mov",
+              "available_range": null,
+              "target_url": "file:///media/shot-c.mov"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

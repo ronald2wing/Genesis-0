@@ -1,0 +1,89 @@
+# Build output. Configure out-of-tree:
+#   cmake -S . -B build -G Ninja && cmake --build build && ctest --test-dir build
+# `build/` is unanchored so the standalone spikes' own build dirs are covered
+# too; the root variants (build-ai2, build-grpc, ...) are matched explicitly.
+build/
+/build*/
+/vcpkg/
+vcpkg_installed/
+/out/
+/CMakeFiles/
+/CMakeCache.txt
+/cmake_install.cmake
+/CTestTestfile.cmake
+/install_manifest.txt
+/CTestPresets.json
+/CMakeUserPresets.json
+/compile_commands.json
+/Testing/
+/.cmake/
+
+# Compiled objects and libraries
+*.o
+*.obj
+*.a
+*.lib
+*.lo
+*.so
+*.so.*
+*.dylib
+*.dll
+*.exe
+*.pdb
+*.ilk
+*.exp
+*.d
+*.gch
+*.pch
+
+# Coverage and profiles
+*.gcda
+*.gcno
+*.gcov
+*.profraw
+*.profdata
+lcov.info
+
+# CMake/Ninja leftovers (a few tools still write these beside the source)
+*.ninja
+.ninja_deps
+.ninja_log
+
+# Packaging
+_CPack_Packages/
+*.tar.gz
+*.tar.xz
+*.zip
+*.deb
+*.rpm
+*.AppImage
+
+# Qt / QML generated
+*_autogen/
+mocs_compilation.cpp
+.qmake.stash
+*.qmlc
+*.jsc
+
+# Logs and crash dumps. `/core` is anchored so `src/core` is never matched.
+*.log
+/core
+core.[0-9]*
+vgcore.*
+*.stackdump
+
+# Editors and tooling
+.vscode/
+.idea/
+/.cache/
+/.clangd/
+*.swp
+*.swo
+*~
+*.orig
+*.rej
+
+# OS junk
+.DS_Store
+Thumbs.db
+desktop.ini

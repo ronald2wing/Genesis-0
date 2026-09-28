@@ -1,0 +1,56 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// SPDX-FileCopyrightText: 2026 Genesis-0 contributors
+
+syntax = "proto3";
+
+package genesis.v1;
+
+// The Genesis host JSON-RPC API, tunnelled over gRPC. One Call carries one
+// JSON-RPC 2.0 request object and returns one JSON-RPC 2.0 reply object,
+// routed through the exact codec the stdio `api` verb and the Unix-socket
+// `serve` verb use, so every existing API method is reachable over gRPC with
+// no per-method protobuf surface to keep in sync.
+//
+// `Events` is the transport-level notification stream: the server pushes
+// JSON-RPC 2.0 notifications (no id) as they happen, so a client can observe
+// `project.changed` and `serve.shutdown` without polling. It is not an
+// extension API method - it lives here because it rides the same transport
+// and auth as `Call`.
+service Genesis {
+  // One JSON-RPC round-trip. `json` is a JSON-RPC 2.0 request object (as the
+  // stdio transport accepts); the reply `json` is the matching JSON-RPC 2.0
+  // reply object. Malformed input comes back as a JSON-RPC error reply rather
+  // than a gRPC status, so callers see exactly what stdio would have written.
+  // Authentication failures are the one exception: they are gRPC statuses
+  // (UNAUTHENTICATED), raised before the request reaches dispatch.
+  rpc Call(CallRequest) returns (CallReply);
+
+  // Server-push notification stream. Opens with `authorization: Bearer
+  // <token>`; each `Event.json` is one JSON-RPC 2.0 notification object
+  // (`{"jsonrpc":"2.0","method":"<topic>","params":{...}}`), the same envelope
+  // the codec already spells. Topics today: `project.changed` (after a
+  // successful project-mutating Call) and `serve.shutdown` (just before the
+  // server exits). A missing or wrong token is refused UNAUTHENTICATED.
+  rpc Events(EventsRequest) returns (stream Event);
+}
+
+message CallRequest {
+  string json = 1;
+}
+
+message CallReply {
+  string json = 1;
+}
+
+// Subscribe to transport events. `topic` is an optional filter: empty receives
+// every topic; a non-empty value receives only the topic whose notification
+// `method` equals it (e.g. "project.changed").
+message EventsRequest {
+  string topic = 1;
+}
+
+// One event: the JSON-RPC 2.0 notification object, so notifications reuse the
+// Call codec's envelope unchanged.
+message Event {
+  string json = 1;
+}

@@ -1,0 +1,57 @@
+name: Windows subprocess
+
+# Focused compile-and-run gate for the Windows branch of
+# src/extensions/Subprocess.cpp (Boost.Process v2). The full app is Linux-first,
+# so this job builds only the engine-free unit plus a small harness.
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "src/extensions/Subprocess.cpp"
+      - "src/extensions/Subprocess.h"
+      - "tests/platform/windows/**"
+      - ".github/workflows/windows.yml"
+  pull_request:
+    paths:
+      - "src/extensions/Subprocess.cpp"
+      - "src/extensions/Subprocess.h"
+      - "tests/platform/windows/**"
+      - ".github/workflows/windows.yml"
+
+jobs:
+  subprocess:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Restore vcpkg binary cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ runner.temp }}/vcpkg-cache
+          key: vcpkg-windows-${{ hashFiles('tests/platform/windows/vcpkg.json') }}
+          restore-keys: |
+            vcpkg-windows-
+
+      - name: Bootstrap vcpkg
+        shell: pwsh
+        run: |
+          git clone --filter=blob:none https://github.com/microsoft/vcpkg.git "$env:RUNNER_TEMP\vcpkg"
+          & "$env:RUNNER_TEMP\vcpkg\bootstrap-vcpkg.bat" -disableMetrics
+          Add-Content -Path $env:GITHUB_ENV -Value "VCPKG_ROOT=$env:RUNNER_TEMP\vcpkg"
+          Add-Content -Path $env:GITHUB_ENV -Value "VCPKG_BINARY_SOURCES=clear;files,$env:RUNNER_TEMP\vcpkg-cache,readwrite"
+
+      - name: Configure
+        shell: pwsh
+        run: |
+          cmake -S tests/platform/windows -B build-windows -G Ninja `
+            -DCMAKE_TOOLCHAIN_FILE="$env:VCPKG_ROOT\scripts\buildsystems\vcpkg.cmake"
+
+      - name: Build
+        shell: pwsh
+        run: cmake --build build-windows
+
+      - name: Run
+        shell: pwsh
+        run: |
+          .\build-windows\subprocess_check.exe
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }

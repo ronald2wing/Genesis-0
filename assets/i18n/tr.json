@@ -1,0 +1,19 @@
+{
+    "_meta": {
+        "status": "unreviewed-machine-draft",
+        "source": "en",
+        "generated": "2026-10-04"
+    },
+    "app.title": "Genesis-0",
+    "start.recentProjects": "Son projeler",
+    "start.empty": "Henüz burada bir şey yok — açtığınız projeler burada görünecek.",
+    "start.open": "Aç",
+    "start.newProject": "Yeni Proje",
+    "start.continue": "Düzenleyiciye Devam Et",
+    "start.templates": "Şablonlar",
+    "start.templatesEmpty": "Henüz şablon yok.",
+    "start.create": "Oluştur",
+    "start.namePlaceholder": "Adsız proje",
+    "tray.show": "Genesis-0'ı Göster",
+    "tray.quit": "Çık"
+}
