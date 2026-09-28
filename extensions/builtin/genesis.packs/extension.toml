@@ -1,0 +1,3910 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# SPDX-FileCopyrightText: 2026 Genesis-0 contributors
+
+# The builtin data-only extension that ships the official effect-pack set.
+# There is no `entry`: the extension contributes only its bundled packs (the
+# 123 effect blocks below), whose bodies live beside this manifest as
+# `packs/genesis.*/effect.glsl`.
+
+[extension]
+id = "genesis.packs"
+name = "Genesis Effect Packs"
+version = 1
+api = 1
+
+[[effect]]
+id = "genesis.ascii"
+name = "ASCII"
+kind = "effect"
+category = "Stylize"
+order = 45
+description = "The picture re-drawn as a grid of glyph cells, each shaded by its brightness."
+body = "packs/genesis.ascii/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "columns"
+label = "Columns"
+type = "int"
+min = 8
+max = 120
+default = 64
+step = 1
+
+[[effect]]
+id = "genesis.bleach-bypass"
+name = "Bleach Bypass"
+kind = "filter"
+category = "Cinematic"
+order = 51
+description = "The silver-retention film process: colour washed out, contrast pushed hard."
+body = "packs/genesis.bleach-bypass/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect]]
+id = "genesis.bloom"
+name = "Bloom"
+kind = "filter"
+category = "Light"
+intensity = "amount"
+order = 72
+description = "A soft bloom around the bright parts of the picture."
+body = "packs/genesis.bloom/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "amount"
+label = "Amount"
+min = 0
+max = 100
+default = 50
+step = 1
+unit = "%"
+
+[[effect]]
+id = "genesis.bloom-pulse"
+name = "Bloom Pulse"
+kind = "effect"
+category = "Light"
+intensity = "amount"
+order = 72
+description = "A soft bloom over the highlights that breathes in and out."
+body = "packs/genesis.bloom-pulse/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "amount"
+label = "Amount"
+min = 0
+max = 100
+default = 50
+step = 1
+unit = "%"
+
+[[effect.param]]
+key = "pulse"
+label = "Pulse"
+min = 0
+max = 1
+default = 1
+step = 0.01
+animate = true
+
+[[effect]]
+id = "genesis.blur"
+name = "Blur"
+kind = "effect"
+category = "Blur"
+intensity = "radius"
+order = 20
+description = "A soft, even blur."
+body = "packs/genesis.blur/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "radius"
+label = "Radius"
+min = 1
+max = 50
+default = 10
+step = 1
+unit = "px"
+
+[[effect]]
+id = "genesis.border"
+name = "Border"
+kind = "effect"
+category = "Transform"
+intensity = "strength"
+order = 30
+description = "A solid border drawn around the edge of the frame."
+body = "packs/genesis.border/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "thickness"
+label = "Thickness"
+min = 0
+max = 30
+default = 5
+step = 1
+unit = "%"
+
+[[effect.param]]
+key = "hue"
+label = "Colour Hue"
+min = 0
+max = 360
+default = 0
+step = 1
+unit = "deg"
+
+[[effect.param]]
+key = "strength"
+label = "Strength"
+min = 0
+max = 100
+default = 100
+step = 1
+unit = "%"
+
+[[effect]]
+id = "genesis.brightness-contrast-saturation"
+name = "Brightness, Contrast & Saturation"
+kind = "effect"
+category = "Color"
+order = 17
+description = "The three everyday adjustments in one place: brightness offsets the picture, contrast spreads it about middle grey, and saturation pulls colour towards or away from each pixel's own brightness."
+body = "packs/genesis.brightness-contrast-saturation/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "brightness"
+label = "Brightness"
+min = -100
+max = 100
+default = 0
+step = 1
+unit = "%"
+animate = true
+
+[[effect.param]]
+key = "contrast"
+label = "Contrast"
+min = -100
+max = 100
+default = 0
+step = 1
+unit = "%"
+animate = true
+
+[[effect.param]]
+key = "saturation"
+label = "Saturation"
+min = -100
+max = 100
+default = 0
+step = 1
+unit = "%"
+animate = true
+
+[[effect]]
+id = "genesis.bulge"
+name = "Bulge"
+kind = "effect"
+category = "Distort"
+intensity = "strength"
+order = 52
+description = "The picture magnified around a point, pushed outward like a bubble."
+body = "packs/genesis.bulge/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "strength"
+label = "Strength"
+min = 0
+max = 100
+default = 40
+step = 1
+unit = "%"
+animate = true
+
+[[effect.param]]
+key = "center_x"
+label = "Centre X"
+min = 0
+max = 1
+default = 0.5
+step = 0.01
+
+[[effect.param]]
+key = "center_y"
+label = "Centre Y"
+min = 0
+max = 1
+default = 0.5
+step = 0.01
+
+[[effect]]
+id = "genesis.cartoon"
+name = "Cartoon"
+kind = "effect"
+category = "Stylize"
+intensity = "strength"
+order = 46
+description = "Flat colour bands and darkened edges, the look of cel animation."
+body = "packs/genesis.cartoon/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "levels"
+label = "Levels"
+type = "int"
+min = 2
+max = 8
+default = 4
+step = 1
+
+[[effect.param]]
+key = "strength"
+label = "Outline"
+min = 0
+max = 100
+default = 50
+step = 1
+unit = "%"
+
+[[effect]]
+id = "genesis.channel-mixer"
+name = "Channel Mixer"
+kind = "effect"
+category = "Color"
+order = 49
+description = "Remix the red, green and blue channels with nine independent weights."
+body = "packs/genesis.channel-mixer/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "rr"
+label = "Red from Red"
+min = -2
+max = 2
+default = 1
+step = 0.01
+group = "Red output"
+
+[[effect.param]]
+key = "rg"
+label = "Red from Green"
+min = -2
+max = 2
+default = 0
+step = 0.01
+group = "Red output"
+
+[[effect.param]]
+key = "rb"
+label = "Red from Blue"
+min = -2
+max = 2
+default = 0
+step = 0.01
+group = "Red output"
+
+[[effect.param]]
+key = "gr"
+label = "Green from Red"
+min = -2
+max = 2
+default = 0
+step = 0.01
+group = "Green output"
+
+[[effect.param]]
+key = "gg"
+label = "Green from Green"
+min = -2
+max = 2
+default = 1
+step = 0.01
+group = "Green output"
+
+[[effect.param]]
+key = "gb"
+label = "Green from Blue"
+min = -2
+max = 2
+default = 0
+step = 0.01
+group = "Green output"
+
+[[effect.param]]
+key = "br"
+label = "Blue from Red"
+min = -2
+max = 2
+default = 0
+step = 0.01
+group = "Blue output"
+
+[[effect.param]]
+key = "bg"
+label = "Blue from Green"
+min = -2
+max = 2
+default = 0
+step = 0.01
+group = "Blue output"
+
+[[effect.param]]
+key = "bb"
+label = "Blue from Blue"
+min = -2
+max = 2
+default = 1
+step = 0.01
+group = "Blue output"
+
+[[effect]]
+id = "genesis.channel-swap"
+name = "Channel Swap"
+kind = "effect"
+category = "Color"
+order = 50
+description = "The red, green and blue channels reordered."
+body = "packs/genesis.channel-swap/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "mode"
+label = "Order"
+type = "enum"
+min = 0
+max = 5
+default = 0
+step = 1
+values = [0, 1, 2, 3, 4, 5]
+labels = ["RBG", "GBR", "BRG", "BGR", "GRB", "RGB"]
+
+[[effect]]
+id = "genesis.chromatic-aberration"
+name = "Chromatic Aberration"
+kind = "effect"
+category = "Distort"
+intensity = "shift"
+order = 57
+description = "Red and blue pulled apart towards the edges, the colour fringing of a cheap lens."
+body = "packs/genesis.chromatic-aberration/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "shift"
+label = "Shift"
+type = "int"
+min = 1
+max = 24
+default = 4
+step = 1
+unit = "px"
+
+[[effect]]
+id = "genesis.clarity"
+name = "Clarity"
+kind = "filter"
+category = "Color"
+intensity = "strength"
+order = 33
+description = "Local contrast around the midtones, edges and texture lifted without the blacks."
+body = "packs/genesis.clarity/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "strength"
+label = "Strength"
+min = -100
+max = 100
+default = 30
+step = 1
+unit = "%"
+
+[[effect]]
+id = "genesis.color-balance"
+name = "Colour Balance"
+kind = "effect"
+category = "Color"
+order = 45
+description = "Lift, gamma and gain: the shadows raised, the midtones bent and the whole picture scaled, as the colour wheels would."
+body = "packs/genesis.color-balance/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "lift"
+label = "Lift"
+min = -1
+max = 1
+default = 0
+step = 0.01
+animate = true
+
+[[effect.param]]
+key = "gamma"
+label = "Gamma"
+min = 0.1
+max = 10
+default = 1
+step = 0.01
+animate = true
+
+[[effect.param]]
+key = "gain"
+label = "Gain"
+min = 0
+max = 2
+default = 1
+step = 0.01
+animate = true
+
+[[effect]]
+id = "genesis.colorize"
+name = "Colorize"
+kind = "filter"
+category = "Color"
+intensity = "strength"
+order = 17
+description = "The picture's tones re-tinted with one hue, from a subtle cast to a full wash."
+body = "packs/genesis.colorize/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "hue"
+label = "Hue"
+min = 0
+max = 360
+default = 210
+step = 1
+unit = "deg"
+animate = true
+
+[[effect.param]]
+key = "saturation"
+label = "Saturation"
+min = 0
+max = 100
+default = 80
+step = 1
+unit = "%"
+
+[[effect.param]]
+key = "strength"
+label = "Strength"
+min = 0
+max = 100
+default = 100
+step = 1
+unit = "%"
+
+[[effect]]
+id = "genesis.comic"
+name = "Comic"
+kind = "effect"
+category = "Stylize"
+intensity = "strength"
+order = 60
+description = "Posterised colour with dark ink outlines."
+body = "packs/genesis.comic/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "levels"
+label = "Colour Levels"
+type = "int"
+min = 2
+max = 12
+default = 5
+step = 1
+
+[[effect.param]]
+key = "edge"
+label = "Outline"
+min = 0
+max = 100
+default = 70
+step = 1
+unit = "%"
+
+[[effect.param]]
+key = "strength"
+label = "Strength"
+min = 0
+max = 100
+default = 100
+step = 1
+unit = "%"
+
+[[effect]]
+id = "genesis.contrast"
+name = "Contrast"
+kind = "effect"
+category = "Color"
+intensity = "amount"
+order = 11
+description = "More or less contrast about middle grey."
+body = "packs/genesis.contrast/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "amount"
+label = "Contrast"
+min = -100
+max = 100
+default = 0
+step = 1
+unit = "%"
+animate = true
+
+[[effect]]
+id = "genesis.crosshatch"
+name = "Crosshatch"
+kind = "effect"
+category = "Stylize"
+intensity = "strength"
+order = 54
+description = "Shading drawn as crossing strokes, dense where the picture is busy."
+body = "packs/genesis.crosshatch/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "strength"
+label = "Strength"
+min = 0
+max = 100
+default = 40
+step = 1
+unit = "%"
+
+[[effect]]
+id = "genesis.crt"
+name = "CRT"
+kind = "effect"
+category = "Stylize"
+intensity = "strength"
+order = 52
+description = "A curved tube: fringed colour, scanlines and dimmed corners."
+body = "packs/genesis.crt/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "strength"
+label = "Strength"
+min = 0
+max = 100
+default = 60
+step = 1
+unit = "%"
+
+[[effect]]
+id = "genesis.cubism"
+name = "Cubism"
+kind = "effect"
+category = "Stylize"
+intensity = "strength"
+order = 60
+description = "The picture split into jittered faceted tiles."
+body = "packs/genesis.cubism/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "facet_size"
+label = "Facet Size"
+min = 4
+max = 96
+default = 32
+step = 1
+unit = "px"
+
+[[effect.param]]
+key = "jitter"
+label = "Jitter"
+min = 0
+max = 100
+default = 40
+step = 1
+unit = "%"
+
+[[effect.param]]
+key = "strength"
+label = "Strength"
+min = 0
+max = 100
+default = 100
+step = 1
+unit = "%"
+
+[[effect]]
+id = "genesis.curves"
+name = "Curves"
+kind = "effect"
+category = "Color"
+order = 18
+description = "A tone curve shaped by three knobs: the shadows raised or crushed, the midtones bent, and the highlights lifted or dimmed."
+body = "packs/genesis.curves/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "shadows"
+label = "Shadows"
+min = -1
+max = 1
+default = 0
+step = 0.01
+animate = true
+
+[[effect.param]]
+key = "midtones"
+label = "Midtones"
+min = -1
+max = 1
+default = 0
+step = 0.01
+animate = true
+
+[[effect.param]]
+key = "highlights"
+label = "Highlights"
+min = -1
+max = 1
+default = 0
+step = 0.01
+animate = true
+
+[[effect]]
+id = "genesis.datamosh"
+name = "Datamosh"
+kind = "effect"
+category = "Glitch"
+intensity = "strength"
+order = 80
+description = "Blocks of the picture slid sideways, a compressed-frame glitch."
+body = "packs/genesis.datamosh/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "blocks"
+label = "Blocks"
+type = "int"
+min = 2
+max = 32
+default = 16
+step = 1
+
+[[effect.param]]
+key = "displacement"
+label = "Displacement"
+min = 0
+max = 100
+default = 40
+step = 1
+unit = "%"
+
+[[effect.param]]
+key = "strength"
+label = "Strength"
+min = 0
+max = 100
+default = 70
+step = 1
+unit = "%"
+
+[[effect]]
+id = "genesis.denoise"
+name = "Denoise"
+kind = "effect"
+category = "Blur"
+intensity = "strength"
+order = 21
+description = "Noise smoothed away while edges hold: neighbours of a similar colour are averaged, with the tolerance set by strength."
+body = "packs/genesis.denoise/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "radius"
+label = "Radius"
+min = 1
+max = 10
+default = 2
+step = 1
+unit = "px"
+
+[[effect.param]]
+key = "strength"
+label = "Strength"
+min = 0
+max = 100
+default = 50
+step = 1
+unit = "%"
+
+[[effect]]
+id = "genesis.denoise-audio"
+name = "Audio Denoise"
+kind = "audio"
+category = "Audio"
+order = 3
+description = "WebRTC noise suppression for a clip's sound, from a gentle low to a very aggressive clean-up."
+
+[[effect.param]]
+key = "strength"
+label = "Strength"
+type = "enum"
+min = 0
+max = 3
+default = 1
+step = 1
+values = [0, 1, 2, 3]
+labels = ["Low", "Moderate", "High", "Very High"]
+
+[effect.audio]
+element = "webrtcdsp"
+
+[[effect.audio.param]]
+key = "noise-suppression"
+expr = "1"
+
+[[effect.audio.param]]
+key = "noise-suppression-level"
+expr = "strength"
+
+[[effect]]
+id = "genesis.directional-blur"
+name = "Directional Blur"
+kind = "effect"
+category = "Blur"
+intensity = "radius"
+order = 22
+description = "A streak of motion along a chosen angle, the picture smeared one way."
+body = "packs/genesis.directional-blur/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "angle"
+label = "Angle"
+min = -180
+max = 180
+default = 0
+step = 1
+unit = "deg"
+animate = true
+
+[[effect.param]]
+key = "radius"
+label = "Radius"
+min = 1
+max = 50
+default = 10
+step = 1
+unit = "px"
+
+[[effect]]
+id = "genesis.dither"
+name = "Dither"
+kind = "effect"
+category = "Stylize"
+intensity = "levels"
+order = 55
+description = "Black and white ordered dithering, the look of a newsprint halftone."
+body = "packs/genesis.dither/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "levels"
+label = "Levels"
+type = "int"
+min = 2
+max = 8
+default = 4
+step = 1
+
+[[effect]]
+id = "genesis.dream"
+name = "Dream"
+kind = "filter"
+category = "Stylize"
+intensity = "strength"
+order = 61
+description = "A hazy, glowing soft-focus over the whole picture."
+body = "packs/genesis.dream/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "strength"
+label = "Strength"
+min = 0
+max = 100
+default = 60
+step = 1
+unit = "%"
+
+[[effect]]
+id = "genesis.drop-shadow"
+name = "Drop Shadow"
+kind = "effect"
+category = "Stylize"
+order = 41
+description = "A dark shadow cast beside a title or overlay's opaque shapes."
+body = "packs/genesis.drop-shadow/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "offset_x"
+label = "Offset X"
+min = -50
+max = 50
+default = 10
+step = 1
+unit = "px"
+
+[[effect.param]]
+key = "offset_y"
+label = "Offset Y"
+min = -50
+max = 50
+default = 15
+step = 1
+unit = "px"
+
+[[effect.param]]
+key = "blur"
+label = "Blur"
+min = 0
+max = 30
+default = 8
+step = 1
+unit = "px"
+
+[[effect.param]]
+key = "opacity"
+label = "Opacity"
+min = 0
+max = 100
+default = 70
+step = 1
+unit = "%"
+
+[[effect]]
+id = "genesis.duotone"
+name = "Duotone"
+kind = "filter"
+category = "Color"
+order = 47
+description = "Every shade printed as a hue between two inks, the shadows one colour and the highlights another."
+body = "packs/genesis.duotone/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "shadow_hue"
+label = "Shadow hue"
+min = 0
+max = 360
+default = 240
+step = 1
+unit = "deg"
+animate = true
+
+[[effect.param]]
+key = "highlight_hue"
+label = "Highlight hue"
+min = 0
+max = 360
+default = 45
+step = 1
+unit = "deg"
+animate = true
+
+[[effect]]
+id = "genesis.dust"
+name = "Dust"
+kind = "effect"
+category = "Retro"
+intensity = "strength"
+order = 43
+description = "Tiny dust specks and hairs over a darkened frame."
+body = "packs/genesis.dust/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "density"
+label = "Density"
+min = 0
+max = 100
+default = 50
+step = 1
+unit = "%"
+
+[[effect.param]]
+key = "strength"
+label = "Strength"
+min = 0
+max = 100
+default = 60
+step = 1
+unit = "%"
+
+[[effect]]
+id = "genesis.echo"
+name = "Echo"
+kind = "effect"
+category = "Blur"
+intensity = "strength"
+order = 40
+description = "Ghosted afterimages repeating across the frame."
+body = "packs/genesis.echo/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "angle"
+label = "Angle"
+min = 0
+max = 360
+default = 0
+step = 1
+unit = "deg"
+
+[[effect.param]]
+key = "distance"
+label = "Distance"
+min = 0
+max = 100
+default = 40
+step = 1
+unit = "%"
+
+[[effect.param]]
+key = "strength"
+label = "Strength"
+min = 0
+max = 100
+default = 70
+step = 1
+unit = "%"
+
+[[effect]]
+id = "genesis.edge-glow"
+name = "Edge Glow"
+kind = "effect"
+category = "Stylize"
+intensity = "strength"
+order = 60
+description = "Edges traced with a glowing colour over a dimmed picture."
+body = "packs/genesis.edge-glow/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "hue"
+label = "Glow Hue"
+min = 0
+max = 360
+default = 180
+step = 1
+unit = "deg"
+
+[[effect.param]]
+key = "edge"
+label = "Edge Width"
+min = 1
+max = 20
+default = 4
+step = 1
+unit = "px"
+
+[[effect.param]]
+key = "strength"
+label = "Strength"
+min = 0
+max = 100
+default = 70
+step = 1
+unit = "%"
+
+[[effect]]
+id = "genesis.edges"
+name = "Edges"
+kind = "effect"
+category = "Stylize"
+intensity = "strength"
+order = 56
+description = "Dark lines where the picture turns, everything else to white."
+body = "packs/genesis.edges/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "strength"
+label = "Strength"
+min = 0
+max = 100
+default = 60
+step = 1
+unit = "%"
+
+[[effect]]
+id = "genesis.emboss"
+name = "Emboss"
+kind = "effect"
+category = "Stylize"
+intensity = "strength"
+order = 53
+description = "The picture stamped into relief, lit from one corner."
+body = "packs/genesis.emboss/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "strength"
+label = "Strength"
+min = 0
+max = 100
+default = 50
+step = 1
+unit = "%"
+
+[[effect]]
+id = "genesis.exposure"
+name = "Exposure"
+kind = "effect"
+category = "Color"
+intensity = "stops"
+order = 10
+description = "Brighter or darker by stops of light, as the lens would make it."
+body = "packs/genesis.exposure/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "stops"
+label = "Exposure"
+min = -4
+max = 4
+default = 0
+step = 0.05
+unit = "EV"
+animate = true
+
+[[effect]]
+id = "genesis.fade"
+name = "Fade"
+kind = "filter"
+category = "Color"
+intensity = "strength"
+order = 22
+description = "The faded film print: blacks lifted to grey, whites softened and a little colour pulled out, mixed from full strength down to the untouched picture."
+body = "packs/genesis.fade/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "strength"
+label = "Strength"
+min = 0
+max = 100
+default = 100
+step = 1
+unit = "%"
+
+[[effect]]
+id = "genesis.false-color"
+name = "False Color"
+kind = "effect"
+category = "Color"
+order = 51
+description = "The picture's brightness mapped onto a thermal or rainbow palette."
+body = "packs/genesis.false-color/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "palette"
+label = "Palette"
+type = "enum"
+min = 0
+max = 2
+default = 0
+step = 1
+values = [0, 1, 2]
+labels = ["Thermal", "Ice", "Rainbow"]
+
+[[effect]]
+id = "genesis.film-fade"
+name = "Faded Film"
+kind = "filter"
+category = "Cinematic"
+intensity = "strength"
+order = 52
+description = "Lifted blacks and a warm wash, a print left in the sun."
+body = "packs/genesis.film-fade/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "strength"
+label = "Strength"
+min = 0
+max = 100
+default = 100
+step = 1
+unit = "%"
+
+[[effect]]
+id = "genesis.film-grain"
+name = "Film Grain"
+kind = "effect"
+category = "Stylize"
+intensity = "amount"
+order = 50
+description = "Dancing grain, the texture of film stock."
+body = "packs/genesis.film-grain/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "amount"
+label = "Amount"
+min = 0
+max = 100
+default = 30
+step = 1
+unit = "%"
+
+[[effect]]
+id = "genesis.filmic"
+name = "Filmic"
+kind = "filter"
+category = "Color"
+intensity = "strength"
+order = 20
+description = "A gentle film-like S-curve with a rolled-off toe and shoulder, mixed from full strength down to the untouched picture."
+body = "packs/genesis.filmic/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "strength"
+label = "Strength"
+min = 0
+max = 100
+default = 100
+step = 1
+unit = "%"
+
+[[effect]]
+id = "genesis.fisheye"
+name = "Fisheye"
+kind = "effect"
+category = "Distort"
+intensity = "strength"
+order = 58
+description = "The bulge of a very wide lens."
+body = "packs/genesis.fisheye/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "strength"
+label = "Strength"
+min = 5
+max = 100
+default = 50
+step = 1
+unit = "%"
+
+[[effect]]
+id = "genesis.flip"
+name = "Flip"
+kind = "effect"
+category = "Transform"
+order = 62
+description = "The picture turned over, one way or both, so left and right or top and bottom trade places."
+body = "packs/genesis.flip/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "mode"
+label = "Mode"
+type = "enum"
+min = 0
+max = 2
+default = 0
+step = 1
+values = [0, 1, 2]
+labels = ["Horizontal", "Vertical", "Both"]
+
+[[effect]]
+id = "genesis.gaussian-blur"
+name = "Gaussian Blur"
+kind = "effect"
+category = "Blur"
+intensity = "radius"
+order = 20
+description = "A soft, even blur."
+body = "packs/genesis.gaussian-blur/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "radius"
+label = "Radius"
+min = 1
+max = 50
+default = 10
+step = 1
+unit = "px"
+
+[[effect]]
+id = "genesis.glitch"
+name = "Glitch"
+kind = "effect"
+category = "Distort"
+intensity = "strength"
+order = 60
+description = "Red and blue torn apart and whole bands slid sideways, a corrupted feed."
+body = "packs/genesis.glitch/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "strength"
+label = "Strength"
+min = 0
+max = 100
+default = 40
+step = 1
+unit = "%"
+
+[[effect]]
+id = "genesis.glow"
+name = "Glow"
+kind = "effect"
+category = "Stylize"
+intensity = "amount"
+order = 42
+description = "A soft bloom around the bright parts of the picture."
+body = "packs/genesis.glow/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "amount"
+label = "Amount"
+min = 10
+max = 100
+default = 45
+step = 1
+unit = "%"
+
+[[effect]]
+id = "genesis.god-rays"
+name = "God Rays"
+kind = "effect"
+category = "Light"
+order = 73
+description = "Rays of light fanning out, a bright sky shining through."
+body = "packs/genesis.god-rays/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "strength"
+label = "Strength"
+min = 0
+max = 100
+default = 50
+step = 1
+unit = "%"
+
+[[effect.param]]
+key = "angle"
+label = "Angle"
+min = 0
+max = 360
+default = 0
+step = 1
+unit = "deg"
+animate = true
+
+[[effect]]
+id = "genesis.gradient-tint"
+name = "Gradient Tint"
+kind = "effect"
+category = "Color"
+intensity = "strength"
+order = 51
+description = "Two hues graded across the picture, top to bottom."
+body = "packs/genesis.gradient-tint/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "top_hue"
+label = "Top Hue"
+min = 0
+max = 360
+default = 200
+step = 1
+unit = "deg"
+
+[[effect.param]]
+key = "bottom_hue"
+label = "Bottom Hue"
+min = 0
+max = 360
+default = 40
+step = 1
+unit = "deg"
+
+[[effect.param]]
+key = "strength"
+label = "Strength"
+min = 0
+max = 100
+default = 50
+step = 1
+unit = "%"
+
+[[effect]]
+id = "genesis.grayscale"
+name = "Grayscale"
+kind = "filter"
+category = "Black & White"
+intensity = "strength"
+order = 60
+description = "Black and white, mixed from full colour down to none."
+body = "packs/genesis.grayscale/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "strength"
+label = "Strength"
+min = 0
+max = 100
+default = 100
+step = 1
+unit = "%"
+
+[[effect]]
+id = "genesis.grunge"
+name = "Grunge"
+kind = "effect"
+category = "Texture"
+intensity = "strength"
+order = 70
+description = "Dirty blotches and grime washed over the picture."
+body = "packs/genesis.grunge/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "density"
+label = "Density"
+min = 0
+max = 100
+default = 60
+step = 1
+unit = "%"
+
+[[effect.param]]
+key = "strength"
+label = "Strength"
+min = 0
+max = 100
+default = 60
+step = 1
+unit = "%"
+
+[[effect]]
+id = "genesis.halftone"
+name = "Halftone"
+kind = "effect"
+category = "Stylize"
+intensity = "size"
+order = 49
+description = "The picture reduced to a grid of black and white dots."
+body = "packs/genesis.halftone/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "size"
+label = "Dot size"
+type = "int"
+min = 4
+max = 40
+default = 6
+step = 1
+unit = "px"
+
+[[effect]]
+id = "genesis.halo"
+name = "Halo"
+kind = "effect"
+category = "Light"
+intensity = "strength"
+order = 56
+description = "A soft halo spreading from the bright areas."
+body = "packs/genesis.halo/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "threshold"
+label = "Threshold"
+min = 0
+max = 100
+default = 60
+step = 1
+unit = "%"
+
+[[effect.param]]
+key = "radius"
+label = "Radius"
+min = 1
+max = 40
+default = 16
+step = 1
+unit = "px"
+
+[[effect.param]]
+key = "strength"
+label = "Strength"
+min = 0
+max = 100
+default = 60
+step = 1
+unit = "%"
+
+[[effect]]
+id = "genesis.hue"
+name = "Hue"
+kind = "effect"
+category = "Color"
+intensity = "degrees"
+order = 15
+description = "Every hue turned, brightness held."
+body = "packs/genesis.hue/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "degrees"
+label = "Hue"
+min = -180
+max = 180
+default = 0
+step = 1
+unit = "deg"
+animate = true
+
+[[effect]]
+id = "genesis.hue-saturation-lightness"
+name = "Hue, Saturation & Lightness"
+kind = "effect"
+category = "Color"
+order = 21
+description = "Hue turned in the colour plane, saturation pulled towards or away from grey, and lightness offset, as one adjustment."
+body = "packs/genesis.hue-saturation-lightness/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "hue"
+label = "Hue"
+min = -180
+max = 180
+default = 0
+step = 1
+unit = "deg"
+animate = true
+
+[[effect.param]]
+key = "saturation"
+label = "Saturation"
+min = -100
+max = 100
+default = 0
+step = 1
+unit = "%"
+animate = true
+
+[[effect.param]]
+key = "lightness"
+label = "Lightness"
+min = -100
+max = 100
+default = 0
+step = 1
+unit = "%"
+animate = true
+
+[[effect]]
+id = "genesis.inner-shadow"
+name = "Inner Shadow"
+kind = "effect"
+category = "Stylize"
+intensity = "strength"
+order = 61
+description = "A shadow cast inward from the frame edges."
+body = "packs/genesis.inner-shadow/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "offset"
+label = "Offset"
+min = 0
+max = 100
+default = 30
+step = 1
+unit = "%"
+
+[[effect.param]]
+key = "softness"
+label = "Softness"
+min = 1
+max = 100
+default = 50
+step = 1
+unit = "%"
+
+[[effect.param]]
+key = "strength"
+label = "Strength"
+min = 0
+max = 100
+default = 70
+step = 1
+unit = "%"
+
+[[effect]]
+id = "genesis.invert"
+name = "Invert"
+kind = "effect"
+category = "Color"
+intensity = "strength"
+order = 14
+description = "Negative colour, mixed from none up to a full invert."
+body = "packs/genesis.invert/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "strength"
+label = "Strength"
+min = 0
+max = 100
+default = 100
+step = 1
+unit = "%"
+
+[[effect]]
+id = "genesis.kaleidoscope"
+name = "Kaleidoscope"
+kind = "effect"
+category = "Transform"
+order = 62
+description = "The picture reflected around the middle into a repeating mandala."
+body = "packs/genesis.kaleidoscope/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "segments"
+label = "Segments"
+type = "int"
+min = 3
+max = 12
+default = 6
+step = 1
+
+[[effect.param]]
+key = "angle"
+label = "Angle"
+min = -180
+max = 180
+default = 0
+step = 1
+unit = "deg"
+animate = true
+
+[[effect]]
+id = "genesis.lens-distortion"
+name = "Lens Distortion"
+kind = "effect"
+category = "Distort"
+intensity = "distortion"
+order = 51
+description = "Bends the picture like a wide lens: barrel one way, pincushion the other."
+body = "packs/genesis.lens-distortion/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "distortion"
+label = "Distortion"
+min = -100
+max = 100
+default = 0
+step = 1
+unit = "%"
+
+[[effect]]
+id = "genesis.lens-flare"
+name = "Lens Flare"
+kind = "effect"
+category = "Light"
+order = 71
+description = "An anamorphic streak and hot spot, light catching the lens."
+body = "packs/genesis.lens-flare/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "strength"
+label = "Strength"
+min = 0
+max = 100
+default = 50
+step = 1
+unit = "%"
+
+[[effect.param]]
+key = "angle"
+label = "Angle"
+min = 0
+max = 360
+default = 0
+step = 1
+unit = "deg"
+animate = true
+
+[[effect]]
+id = "genesis.letterbox"
+name = "Letterbox"
+kind = "effect"
+category = "Transform"
+intensity = "size"
+order = 64
+description = "Black bars across the top and bottom, the wide-screen frame."
+body = "packs/genesis.letterbox/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "size"
+label = "Bar size"
+type = "int"
+min = 0
+max = 50
+default = 12
+step = 1
+unit = "%"
+
+[[effect]]
+id = "genesis.levels"
+name = "Levels"
+kind = "effect"
+category = "Color"
+order = 46
+description = "The picture remapped between chosen black and white points, bent by gamma."
+body = "packs/genesis.levels/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "in_black"
+label = "Black point"
+min = 0
+max = 1
+default = 0
+step = 0.01
+
+[[effect.param]]
+key = "in_white"
+label = "White point"
+min = 0
+max = 1
+default = 1
+step = 0.01
+
+[[effect.param]]
+key = "gamma"
+label = "Gamma"
+min = 0.1
+max = 10
+default = 1
+step = 0.01
+
+[[effect.param]]
+key = "out_black"
+label = "Output black"
+min = 0
+max = 1
+default = 0
+step = 0.01
+
+[[effect.param]]
+key = "out_white"
+label = "Output white"
+min = 0
+max = 1
+default = 1
+step = 0.01
+
+[[effect]]
+id = "genesis.lift-gamma-gain"
+name = "Lift, Gamma, Gain"
+kind = "filter"
+category = "Color"
+intensity = "strength"
+order = 47
+description = "The colourist's primary wheels as three sliders: the shadows lifted, the midtones bent by gamma and the whole picture scaled, mixed from full strength down to the untouched picture."
+body = "packs/genesis.lift-gamma-gain/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "lift"
+label = "Lift"
+min = -1
+max = 1
+default = 0
+step = 0.01
+animate = true
+
+[[effect.param]]
+key = "gamma"
+label = "Gamma"
+min = 0.1
+max = 10
+default = 1
+step = 0.01
+animate = true
+
+[[effect.param]]
+key = "gain"
+label = "Gain"
+min = 0
+max = 2
+default = 1
+step = 0.01
+animate = true
+
+[[effect.param]]
+key = "strength"
+label = "Strength"
+min = 0
+max = 100
+default = 100
+step = 1
+unit = "%"
+
+[[effect]]
+id = "genesis.light-leak"
+name = "Light Leak"
+kind = "effect"
+category = "Light"
+order = 70
+description = "A coloured bloom leaking in from one side, a stray light through the gate."
+body = "packs/genesis.light-leak/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "strength"
+label = "Strength"
+min = 0
+max = 100
+default = 40
+step = 1
+unit = "%"
+
+[[effect.param]]
+key = "angle"
+label = "Angle"
+min = 0
+max = 360
+default = 0
+step = 1
+unit = "deg"
+animate = true
+
+[[effect.param]]
+key = "color"
+label = "Tint"
+type = "enum"
+min = 0
+max = 2
+default = 0
+step = 1
+values = [0, 1, 2]
+labels = ["Warm", "Cool", "Green"]
+
+[[effect]]
+id = "genesis.light-streaks"
+name = "Light Streaks"
+kind = "effect"
+category = "Light"
+intensity = "strength"
+order = 55
+description = "Anamorphic horizontal streaks pulled from the highlights."
+body = "packs/genesis.light-streaks/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "threshold"
+label = "Threshold"
+min = 0
+max = 100
+default = 70
+step = 1
+unit = "%"
+
+[[effect.param]]
+key = "length"
+label = "Length"
+min = 0
+max = 100
+default = 60
+step = 1
+unit = "%"
+
+[[effect.param]]
+key = "strength"
+label = "Strength"
+min = 0
+max = 100
+default = 70
+step = 1
+unit = "%"
+
+[[effect]]
+id = "genesis.loudness"
+name = "Loudness"
+kind = "audio"
+category = "Audio"
+order = 1
+description = "A ReplayGain-style level: boost rides tagged gain, fallback sets the level for untagged audio."
+
+[[effect.param]]
+key = "boost"
+label = "Boost"
+min = -60
+max = 60
+default = 0
+step = 0.5
+unit = "dB"
+
+[[effect.param]]
+key = "fallback"
+label = "Fallback"
+min = -60
+max = 60
+default = 0
+step = 0.5
+unit = "dB"
+
+[[effect.param]]
+key = "album"
+label = "Album Mode"
+type = "bool"
+min = 0
+max = 1
+default = 1
+step = 1
+
+[effect.audio]
+element = "rgvolume"
+
+[[effect.audio.param]]
+key = "pre-amp"
+expr = "boost"
+
+[[effect.audio.param]]
+key = "fallback-gain"
+expr = "fallback"
+
+[[effect.audio.param]]
+key = "album-mode"
+expr = "album"
+
+[[effect]]
+id = "genesis.lut-grade"
+name = "LUT Grade"
+kind = "filter"
+category = "Color"
+intensity = "strength"
+order = 48
+description = "A colour look from one of the shipped .cube 3D LUTs, mixed from full strength down to the untouched picture."
+body = "packs/genesis.lut-grade/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "lut"
+label = "LUT"
+type = "enum"
+min = 0
+max = 7
+default = 0
+step = 1
+values = [0, 1, 2, 3, 4, 5, 6, 7]
+labels = ["Bleach Bypass", "Black & White", "Cool Moonlight", "Filmic Contrast", "Teal Orange", "Vibrant Pop", "Vintage Fade", "Warm Daylight"]
+
+[[effect.param]]
+key = "strength"
+label = "Strength"
+min = 0
+max = 100
+default = 100
+step = 1
+unit = "%"
+
+[[effect]]
+id = "genesis.mirror"
+name = "Mirror"
+kind = "effect"
+category = "Transform"
+order = 61
+description = "Half the picture reflected across the middle, one way or both."
+body = "packs/genesis.mirror/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "mode"
+label = "Mode"
+type = "enum"
+min = 0
+max = 2
+default = 0
+step = 1
+values = [0, 1, 2]
+labels = ["Left-right", "Top-bottom", "Both"]
+
+[[effect]]
+id = "genesis.mosaic"
+name = "Mosaic"
+kind = "effect"
+category = "Stylize"
+intensity = "strength"
+order = 60
+description = "The picture broken into square tiles of flat colour."
+body = "packs/genesis.mosaic/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "tile_size"
+label = "Tile Size"
+min = 2
+max = 96
+default = 24
+step = 1
+unit = "px"
+
+[[effect.param]]
+key = "strength"
+label = "Strength"
+min = 0
+max = 100
+default = 100
+step = 1
+unit = "%"
+
+[[effect]]
+id = "genesis.motion-blur"
+name = "Motion Blur"
+kind = "effect"
+category = "Blur"
+intensity = "length"
+order = 22
+description = "A streak along a line, as if the camera panned."
+body = "packs/genesis.motion-blur/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "length"
+label = "Length"
+min = 2
+max = 60
+default = 18
+step = 1
+unit = "px"
+
+[[effect.param]]
+key = "angle"
+label = "Angle"
+min = -90
+max = 90
+default = 0
+step = 1
+unit = "°"
+
+[[effect]]
+id = "genesis.neon"
+name = "Neon"
+kind = "filter"
+category = "Stylize"
+intensity = "glow"
+order = 48
+description = "Magenta shadows and cyan highlights, hard contrast, and the lights blooming."
+body = "packs/genesis.neon/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "glow"
+label = "Glow"
+min = 0
+max = 100
+default = 60
+step = 1
+unit = "%"
+
+[[effect.param]]
+key = "punch"
+label = "Punch"
+min = 0
+max = 100
+default = 50
+step = 1
+unit = "%"
+
+[[effect]]
+id = "genesis.noir"
+name = "Noir"
+kind = "filter"
+category = "Cinematic"
+intensity = "strength"
+order = 50
+description = "Hard black and white with a cool cast, the look of old crime film."
+body = "packs/genesis.noir/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "strength"
+label = "Strength"
+min = 0
+max = 100
+default = 100
+step = 1
+unit = "%"
+
+[[effect]]
+id = "genesis.noise"
+name = "Noise"
+kind = "effect"
+category = "Stylize"
+intensity = "strength"
+order = 61
+description = "Fine film grain scattered over the picture."
+body = "packs/genesis.noise/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "grain"
+label = "Grain Size"
+min = 1
+max = 16
+default = 2
+step = 1
+unit = "px"
+
+[[effect.param]]
+key = "strength"
+label = "Strength"
+min = 0
+max = 100
+default = 30
+step = 1
+unit = "%"
+
+[[effect]]
+id = "genesis.oil-paint"
+name = "Oil Paint"
+kind = "effect"
+category = "Stylize"
+order = 57
+description = "Thick, edge-preserving smears, a dabbed-on oil painting."
+body = "packs/genesis.oil-paint/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "radius"
+label = "Radius"
+min = 1
+max = 20
+default = 6
+step = 1
+unit = "px"
+
+[[effect.param]]
+key = "sharpness"
+label = "Sharpness"
+min = 1
+max = 50
+default = 12
+step = 1
+
+[[effect]]
+id = "genesis.outline"
+name = "Outline"
+kind = "effect"
+category = "Stylize"
+order = 42
+description = "A coloured stroke drawn around the edges of a title or overlay."
+body = "packs/genesis.outline/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "thickness"
+label = "Thickness"
+min = 1
+max = 20
+default = 3
+step = 1
+unit = "px"
+
+[[effect.param]]
+key = "strength"
+label = "Strength"
+min = 0
+max = 100
+default = 100
+step = 1
+unit = "%"
+
+[[effect.param]]
+key = "color"
+label = "Color"
+type = "enum"
+min = 0
+max = 5
+default = 0
+step = 1
+values = [0, 1, 2, 3, 4, 5]
+labels = ["White", "Black", "Red", "Yellow", "Cyan", "Magenta"]
+
+[[effect]]
+id = "genesis.paper"
+name = "Paper"
+kind = "effect"
+category = "Texture"
+intensity = "strength"
+order = 70
+description = "A fibrous paper grain laid over the picture."
+body = "packs/genesis.paper/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "grain"
+label = "Grain"
+min = 0
+max = 100
+default = 40
+step = 1
+unit = "%"
+
+[[effect.param]]
+key = "tint"
+label = "Paper Tint"
+min = 0
+max = 100
+default = 50
+step = 1
+unit = "%"
+
+[[effect.param]]
+key = "strength"
+label = "Strength"
+min = 0
+max = 100
+default = 70
+step = 1
+unit = "%"
+
+[[effect]]
+id = "genesis.pastel"
+name = "Pastel"
+kind = "filter"
+category = "Stylize"
+intensity = "strength"
+order = 60
+description = "Colours softened and lifted toward a dreamy pastel."
+body = "packs/genesis.pastel/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "strength"
+label = "Strength"
+min = 0
+max = 100
+default = 60
+step = 1
+unit = "%"
+
+[[effect]]
+id = "genesis.pencil-sketch"
+name = "Pencil Sketch"
+kind = "effect"
+category = "Stylize"
+intensity = "strength"
+order = 47
+description = "Graphite linework over a warm paper tone."
+body = "packs/genesis.pencil-sketch/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "radius"
+label = "Radius"
+type = "int"
+min = 1
+max = 10
+default = 3
+step = 1
+unit = "px"
+
+[[effect.param]]
+key = "strength"
+label = "Strength"
+min = 0
+max = 100
+default = 70
+step = 1
+unit = "%"
+
+[[effect]]
+id = "genesis.perspective"
+name = "Perspective"
+kind = "effect"
+category = "Transform"
+intensity = "strength"
+order = 30
+description = "A planar tilt that narrows one edge toward the middle."
+body = "packs/genesis.perspective/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "amount"
+label = "Amount"
+min = -100
+max = 100
+default = 40
+step = 1
+unit = "%"
+
+[[effect.param]]
+key = "strength"
+label = "Strength"
+min = 0
+max = 100
+default = 80
+step = 1
+unit = "%"
+
+[[effect]]
+id = "genesis.pillarbox"
+name = "Pillarbox"
+kind = "effect"
+category = "Transform"
+intensity = "size"
+order = 65
+description = "Black bars down the left and right, the narrow-screen frame."
+body = "packs/genesis.pillarbox/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "size"
+label = "Bar size"
+type = "int"
+min = 0
+max = 50
+default = 12
+step = 1
+unit = "%"
+
+[[effect]]
+id = "genesis.pinch"
+name = "Pinch"
+kind = "effect"
+category = "Distort"
+intensity = "strength"
+order = 52
+description = "The picture pulled in toward a point, the mirror image of a bulge."
+body = "packs/genesis.pinch/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "strength"
+label = "Strength"
+min = 0
+max = 100
+default = 40
+step = 1
+unit = "%"
+animate = true
+
+[[effect.param]]
+key = "center_x"
+label = "Centre X"
+min = 0
+max = 1
+default = 0.5
+step = 0.01
+
+[[effect.param]]
+key = "center_y"
+label = "Centre Y"
+min = 0
+max = 1
+default = 0.5
+step = 0.01
+
+[[effect]]
+id = "genesis.pitch"
+name = "Pitch"
+kind = "audio"
+category = "Audio"
+order = 2
+description = "Repitch and retime a clip's sound: 1 is unchanged, above raises the pitch or speed."
+
+[[effect.param]]
+key = "pitch"
+label = "Pitch"
+min = 0.1
+max = 10
+default = 1
+step = 0.05
+
+[[effect.param]]
+key = "tempo"
+label = "Tempo"
+min = 0.1
+max = 10
+default = 1
+step = 0.05
+
+[effect.audio]
+element = "pitch"
+
+[[effect.audio.param]]
+key = "pitch"
+expr = "pitch"
+
+[[effect.audio.param]]
+key = "tempo"
+expr = "tempo"
+
+[[effect]]
+id = "genesis.pixelate"
+name = "Pixelate"
+kind = "effect"
+category = "Distort"
+intensity = "size"
+order = 50
+description = "Big square pixels."
+body = "packs/genesis.pixelate/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "size"
+label = "Size"
+type = "int"
+min = 2
+max = 64
+default = 16
+step = 1
+unit = "px"
+
+[[effect]]
+id = "genesis.pointillism"
+name = "Pointillism"
+kind = "effect"
+category = "Stylize"
+intensity = "strength"
+order = 60
+description = "The picture rebuilt from a field of coloured dots."
+body = "packs/genesis.pointillism/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "dot_size"
+label = "Dot Size"
+min = 2
+max = 40
+default = 8
+step = 1
+unit = "px"
+
+[[effect.param]]
+key = "strength"
+label = "Strength"
+min = 0
+max = 100
+default = 100
+step = 1
+unit = "%"
+
+[[effect]]
+id = "genesis.polar"
+name = "Polar"
+kind = "effect"
+category = "Transform"
+intensity = "strength"
+order = 30
+description = "The picture wrapped around a point in polar coordinates."
+body = "packs/genesis.polar/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "strength"
+label = "Strength"
+min = 0
+max = 100
+default = 100
+step = 1
+unit = "%"
+
+[[effect]]
+id = "genesis.posterize"
+name = "Posterize"
+kind = "effect"
+category = "Stylize"
+intensity = "levels"
+order = 43
+description = "Flat bands of colour, like a screen print."
+body = "packs/genesis.posterize/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "levels"
+label = "Levels"
+type = "int"
+min = 2
+max = 8
+default = 4
+step = 1
+
+[[effect]]
+id = "genesis.radial-blur"
+name = "Radial Blur"
+kind = "effect"
+category = "Blur"
+intensity = "strength"
+order = 40
+description = "A zooming blur streaking outward from a point."
+body = "packs/genesis.radial-blur/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "center_x"
+label = "Center X"
+min = 0
+max = 100
+default = 50
+step = 1
+unit = "%"
+
+[[effect.param]]
+key = "center_y"
+label = "Center Y"
+min = 0
+max = 100
+default = 50
+step = 1
+unit = "%"
+
+[[effect.param]]
+key = "amount"
+label = "Amount"
+min = 0
+max = 100
+default = 40
+step = 1
+unit = "%"
+
+[[effect.param]]
+key = "strength"
+label = "Strength"
+min = 0
+max = 100
+default = 80
+step = 1
+unit = "%"
+
+[[effect]]
+id = "genesis.ripple"
+name = "Ripple"
+kind = "effect"
+category = "Distort"
+intensity = "amplitude"
+order = 54
+description = "The picture disturbed by concentric waves, like a stone in water."
+body = "packs/genesis.ripple/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "amplitude"
+label = "Amplitude"
+min = 0
+max = 100
+default = 20
+step = 1
+unit = "%"
+animate = true
+
+[[effect.param]]
+key = "frequency"
+label = "Frequency"
+type = "int"
+min = 1
+max = 20
+default = 5
+step = 1
+
+[[effect.param]]
+key = "phase"
+label = "Phase"
+min = 0
+max = 360
+default = 0
+step = 1
+unit = "deg"
+animate = true
+
+[[effect]]
+id = "genesis.rotate"
+name = "Rotate"
+kind = "effect"
+category = "Transform"
+order = 63
+description = "The picture turned a quarter, half or three-quarters of the way around."
+body = "packs/genesis.rotate/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "mode"
+label = "Mode"
+type = "enum"
+min = 0
+max = 2
+default = 0
+step = 1
+values = [0, 1, 2]
+labels = ["90°", "180°", "270°"]
+
+[[effect]]
+id = "genesis.rounded-corners"
+name = "Rounded Corners"
+kind = "effect"
+category = "Transform"
+intensity = "strength"
+order = 30
+description = "The picture's corners rounded off and cut away."
+body = "packs/genesis.rounded-corners/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "radius"
+label = "Radius"
+min = 0
+max = 50
+default = 20
+step = 1
+unit = "%"
+
+[[effect.param]]
+key = "strength"
+label = "Strength"
+min = 0
+max = 100
+default = 100
+step = 1
+unit = "%"
+
+[[effect]]
+id = "genesis.saturation"
+name = "Saturation"
+kind = "effect"
+category = "Color"
+intensity = "amount"
+order = 12
+description = "Richer or greyer colour, about each pixel's own brightness."
+body = "packs/genesis.saturation/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "amount"
+label = "Saturation"
+min = -100
+max = 100
+default = 0
+step = 1
+unit = "%"
+animate = true
+
+[[effect]]
+id = "genesis.scanlines"
+name = "Scanlines"
+kind = "effect"
+category = "Stylize"
+intensity = "strength"
+order = 51
+description = "Dark horizontal lines, the raster of a television."
+body = "packs/genesis.scanlines/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "strength"
+label = "Strength"
+min = 0
+max = 100
+default = 40
+step = 1
+unit = "%"
+
+[[effect]]
+id = "genesis.scratches"
+name = "Scratches"
+kind = "effect"
+category = "Retro"
+intensity = "strength"
+order = 43
+description = "Fine vertical film scratches and hairs."
+body = "packs/genesis.scratches/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "amount"
+label = "Amount"
+min = 0
+max = 100
+default = 50
+step = 1
+unit = "%"
+
+[[effect.param]]
+key = "strength"
+label = "Strength"
+min = 0
+max = 100
+default = 70
+step = 1
+unit = "%"
+
+[[effect]]
+id = "genesis.screen-tear"
+name = "Screen Tear"
+kind = "effect"
+category = "Glitch"
+intensity = "strength"
+order = 80
+description = "The frame split and slid apart along a horizontal tear."
+body = "packs/genesis.screen-tear/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "tear_y"
+label = "Tear Position"
+min = 0
+max = 100
+default = 50
+step = 1
+unit = "%"
+
+[[effect.param]]
+key = "offset"
+label = "Offset"
+min = 0
+max = 100
+default = 30
+step = 1
+unit = "%"
+
+[[effect.param]]
+key = "strength"
+label = "Strength"
+min = 0
+max = 100
+default = 70
+step = 1
+unit = "%"
+
+[[effect]]
+id = "genesis.sepia"
+name = "Sepia"
+kind = "filter"
+category = "Retro"
+intensity = "strength"
+order = 40
+description = "A warm brown print, mixed from full colour down to none."
+body = "packs/genesis.sepia/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "strength"
+label = "Strength"
+min = 0
+max = 100
+default = 100
+step = 1
+unit = "%"
+
+[[effect]]
+id = "genesis.shadows-highlights"
+name = "Shadows & Highlights"
+kind = "effect"
+category = "Color"
+order = 19
+description = "Recover detail at the extremes: the shadows lifted or crushed, and the highlights brightened or pulled back, each without touching the middle."
+body = "packs/genesis.shadows-highlights/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "shadows"
+label = "Shadows"
+min = -100
+max = 100
+default = 0
+step = 1
+unit = "%"
+animate = true
+
+[[effect.param]]
+key = "highlights"
+label = "Highlights"
+min = -100
+max = 100
+default = 0
+step = 1
+unit = "%"
+animate = true
+
+[[effect]]
+id = "genesis.sharpen"
+name = "Sharpen"
+kind = "effect"
+category = "Basic"
+intensity = "amount"
+order = 13
+description = "Crisper edges."
+body = "packs/genesis.sharpen/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "amount"
+label = "Amount"
+min = 0.2
+max = 3
+default = 1
+step = 0.05
+
+[[effect]]
+id = "genesis.signal-loss"
+name = "Signal Loss"
+kind = "effect"
+category = "Glitch"
+intensity = "strength"
+order = 80
+description = "A band of static and colour fringing like a weak signal."
+body = "packs/genesis.signal-loss/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "band_y"
+label = "Band Position"
+min = 0
+max = 100
+default = 50
+step = 1
+unit = "%"
+
+[[effect.param]]
+key = "band_height"
+label = "Band Height"
+min = 1
+max = 50
+default = 15
+step = 1
+unit = "%"
+
+[[effect.param]]
+key = "strength"
+label = "Strength"
+min = 0
+max = 100
+default = 70
+step = 1
+unit = "%"
+
+[[effect]]
+id = "genesis.solarize"
+name = "Solarize"
+kind = "filter"
+category = "Color"
+intensity = "strength"
+order = 16
+description = "Bright parts flipped to their negative, the photographic Sabattier effect."
+body = "packs/genesis.solarize/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "threshold"
+label = "Threshold"
+min = 0
+max = 100
+default = 50
+step = 1
+unit = "%"
+
+[[effect.param]]
+key = "strength"
+label = "Strength"
+min = 0
+max = 100
+default = 100
+step = 1
+unit = "%"
+
+[[effect]]
+id = "genesis.spin-blur"
+name = "Spin Blur"
+kind = "effect"
+category = "Blur"
+intensity = "strength"
+order = 40
+description = "A rotational blur whirling around a point."
+body = "packs/genesis.spin-blur/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "center_x"
+label = "Center X"
+min = 0
+max = 100
+default = 50
+step = 1
+unit = "%"
+
+[[effect.param]]
+key = "center_y"
+label = "Center Y"
+min = 0
+max = 100
+default = 50
+step = 1
+unit = "%"
+
+[[effect.param]]
+key = "amount"
+label = "Amount"
+min = 0
+max = 100
+default = 40
+step = 1
+unit = "%"
+
+[[effect.param]]
+key = "strength"
+label = "Strength"
+min = 0
+max = 100
+default = 80
+step = 1
+unit = "%"
+
+[[effect]]
+id = "genesis.split-tone"
+name = "Split Tone"
+kind = "effect"
+category = "Color"
+order = 50
+description = "The shadows and highlights each tinted a hue, the middle left alone."
+body = "packs/genesis.split-tone/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "shadow_hue"
+label = "Shadow Hue"
+min = 0
+max = 360
+default = 220
+step = 1
+unit = "deg"
+
+[[effect.param]]
+key = "highlight_hue"
+label = "Highlight Hue"
+min = 0
+max = 360
+default = 40
+step = 1
+unit = "deg"
+
+[[effect.param]]
+key = "balance"
+label = "Amount"
+min = 0
+max = 100
+default = 60
+step = 1
+unit = "%"
+
+[[effect]]
+id = "genesis.spotlight"
+name = "Spotlight"
+kind = "effect"
+category = "Light"
+order = 74
+description = "The picture lit from one point, everything else falling away to black."
+body = "packs/genesis.spotlight/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "center_x"
+label = "Centre X"
+min = 0
+max = 1
+default = 0.5
+step = 0.01
+
+[[effect.param]]
+key = "center_y"
+label = "Centre Y"
+min = 0
+max = 1
+default = 0.5
+step = 0.01
+
+[[effect.param]]
+key = "radius"
+label = "Radius"
+min = 5
+max = 100
+default = 60
+step = 1
+unit = "%"
+
+[[effect.param]]
+key = "strength"
+label = "Strength"
+min = 0
+max = 100
+default = 80
+step = 1
+unit = "%"
+
+[[effect]]
+id = "genesis.squeeze"
+name = "Squeeze"
+kind = "effect"
+category = "Distort"
+intensity = "amount"
+order = 55
+description = "The picture squashed or stretched along one axis."
+body = "packs/genesis.squeeze/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "amount"
+label = "Amount"
+min = -100
+max = 100
+default = 0
+step = 1
+unit = "%"
+
+[[effect.param]]
+key = "axis"
+label = "Axis"
+type = "enum"
+min = 0
+max = 1
+default = 0
+step = 1
+values = [0, 1]
+labels = ["Horizontal", "Vertical"]
+
+[[effect]]
+id = "genesis.stipple"
+name = "Stipple"
+kind = "effect"
+category = "Stylize"
+intensity = "strength"
+order = 60
+description = "A hand-drawn stipple of dots, density following the shade."
+body = "packs/genesis.stipple/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "dot_size"
+label = "Dot Size"
+min = 1
+max = 16
+default = 3
+step = 1
+unit = "px"
+
+[[effect.param]]
+key = "strength"
+label = "Strength"
+min = 0
+max = 100
+default = 100
+step = 1
+unit = "%"
+
+[[effect]]
+id = "genesis.swirl"
+name = "Swirl"
+kind = "effect"
+category = "Distort"
+intensity = "strength"
+order = 59
+description = "The picture twisted around its middle, tighter in the centre."
+body = "packs/genesis.swirl/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "strength"
+label = "Strength"
+min = -100
+max = 100
+default = 40
+step = 1
+unit = "%"
+animate = true
+
+[[effect]]
+id = "genesis.technicolor"
+name = "Technicolor"
+kind = "filter"
+category = "Retro"
+intensity = "strength"
+order = 42
+description = "A warm two-strip film look, red and green records recombined."
+body = "packs/genesis.technicolor/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "strength"
+label = "Strength"
+min = 0
+max = 100
+default = 60
+step = 1
+unit = "%"
+
+[[effect]]
+id = "genesis.temperature"
+name = "Temperature"
+kind = "filter"
+category = "Color"
+intensity = "temperature"
+order = 13
+description = "Warmer or cooler, as the camera's white balance would."
+body = "packs/genesis.temperature/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "temperature"
+label = "Temperature"
+min = 2000
+max = 11000
+default = 6500
+step = 50
+unit = "K"
+animate = true
+
+[[effect]]
+id = "genesis.threshold"
+name = "Threshold"
+kind = "effect"
+category = "Stylize"
+intensity = "threshold"
+order = 44
+description = "Black and white at a hard cut: a pixel is white past the level."
+body = "packs/genesis.threshold/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "threshold"
+label = "Threshold"
+min = 0
+max = 1
+default = 0.5
+step = 0.01
+
+[[effect]]
+id = "genesis.tile"
+name = "Tile"
+kind = "effect"
+category = "Transform"
+intensity = "strength"
+order = 30
+description = "The picture repeated in a grid across the frame."
+body = "packs/genesis.tile/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "columns"
+label = "Columns"
+type = "int"
+min = 1
+max = 8
+default = 3
+step = 1
+
+[[effect.param]]
+key = "rows"
+label = "Rows"
+type = "int"
+min = 1
+max = 8
+default = 3
+step = 1
+
+[[effect.param]]
+key = "strength"
+label = "Strength"
+min = 0
+max = 100
+default = 100
+step = 1
+unit = "%"
+
+[[effect]]
+id = "genesis.tilt-shift"
+name = "Tilt Shift"
+kind = "effect"
+category = "Blur"
+order = 24
+description = "A miniature look: sharp along one band, soft everywhere else."
+body = "packs/genesis.tilt-shift/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "amount"
+label = "Amount"
+min = 0
+max = 50
+default = 20
+step = 1
+unit = "px"
+
+[[effect.param]]
+key = "focus_y"
+label = "Focus"
+min = 0
+max = 1
+default = 0.5
+step = 0.01
+
+[[effect.param]]
+key = "band"
+label = "Band"
+min = 0.02
+max = 0.5
+default = 0.15
+step = 0.01
+
+[[effect]]
+id = "genesis.tint"
+name = "Tint"
+kind = "filter"
+category = "Color"
+intensity = "amount"
+order = 14
+description = "Green towards magenta, the other axis of white balance."
+body = "packs/genesis.tint/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "amount"
+label = "Tint"
+min = -100
+max = 100
+default = 0
+step = 1
+unit = "%"
+animate = true
+
+[[effect]]
+id = "genesis.trails"
+name = "Trails"
+kind = "effect"
+category = "Blur"
+intensity = "strength"
+order = 40
+description = "Directional motion blur streaking the frame."
+body = "packs/genesis.trails/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "angle"
+label = "Angle"
+min = 0
+max = 360
+default = 0
+step = 1
+unit = "deg"
+
+[[effect.param]]
+key = "length"
+label = "Length"
+min = 0
+max = 100
+default = 50
+step = 1
+unit = "%"
+
+[[effect.param]]
+key = "strength"
+label = "Strength"
+min = 0
+max = 100
+default = 80
+step = 1
+unit = "%"
+
+[[effect]]
+id = "genesis.tritone"
+name = "Tritone"
+kind = "effect"
+category = "Color"
+order = 50
+description = "The picture graded through three hues by its brightness."
+body = "packs/genesis.tritone/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "shadow_hue"
+label = "Shadow Hue"
+min = 0
+max = 360
+default = 250
+step = 1
+unit = "deg"
+
+[[effect.param]]
+key = "mid_hue"
+label = "Mid Hue"
+min = 0
+max = 360
+default = 300
+step = 1
+unit = "deg"
+
+[[effect.param]]
+key = "highlight_hue"
+label = "Highlight Hue"
+min = 0
+max = 360
+default = 50
+step = 1
+unit = "deg"
+
+[[effect]]
+id = "genesis.twirl"
+name = "Twirl"
+kind = "effect"
+category = "Distort"
+intensity = "strength"
+order = 53
+description = "The picture spun into a vortex, tighter toward the edge."
+body = "packs/genesis.twirl/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "strength"
+label = "Strength"
+min = -100
+max = 100
+default = 40
+step = 1
+unit = "%"
+animate = true
+
+[[effect.param]]
+key = "center_x"
+label = "Centre X"
+min = 0
+max = 1
+default = 0.5
+step = 0.01
+
+[[effect.param]]
+key = "center_y"
+label = "Centre Y"
+min = 0
+max = 1
+default = 0.5
+step = 0.01
+
+[[effect]]
+id = "genesis.unsharp-mask"
+name = "Unsharp Mask"
+kind = "effect"
+category = "Basic"
+intensity = "amount"
+order = 14
+description = "Crisper edges by the classic method: the original plus a share of the difference between it and a blurred copy, over a chosen radius."
+body = "packs/genesis.unsharp-mask/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "amount"
+label = "Amount"
+min = 0
+max = 2
+default = 0.5
+step = 0.05
+
+[[effect.param]]
+key = "radius"
+label = "Radius"
+min = 1
+max = 10
+default = 2
+step = 1
+unit = "px"
+
+[[effect]]
+id = "genesis.vhs"
+name = "VHS"
+kind = "filter"
+category = "Retro"
+intensity = "strength"
+order = 41
+description = "Worn tape: jumping tracking bands, fringed colour and scanlines."
+body = "packs/genesis.vhs/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "strength"
+label = "Strength"
+min = 0
+max = 100
+default = 60
+step = 1
+unit = "%"
+
+[[effect.param]]
+key = "tracking"
+label = "Tracking"
+min = 0
+max = 100
+default = 15
+step = 1
+unit = "%"
+
+[[effect]]
+id = "genesis.vibrance"
+name = "Vibrance"
+kind = "filter"
+category = "Color"
+intensity = "amount"
+order = 32
+description = "Richer colour where it is muted, without blowing out what is already strong."
+body = "packs/genesis.vibrance/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "amount"
+label = "Amount"
+min = 0.1
+max = 2
+default = 0.7
+step = 0.05
+
+[[effect]]
+id = "genesis.video-balance"
+name = "Video Balance"
+kind = "effect"
+category = "Color"
+intensity = "brightness"
+order = 15
+description = "Brightness, contrast and saturation through a stock CPU filter."
+
+[[effect.wgsl.pass]]
+target = "down"
+
+[[effect.wgsl.pass]]
+target = "balance"
+
+[[effect.param]]
+key = "brightness"
+label = "Brightness"
+min = -1
+max = 1
+default = 0
+step = 0.01
+
+[[effect.param]]
+key = "contrast"
+label = "Contrast"
+min = 0
+max = 2
+default = 1
+step = 0.01
+
+[[effect.param]]
+key = "saturation"
+label = "Saturation"
+min = 0
+max = 2
+default = 1
+step = 0.01
+
+[effect.cpu]
+element = "videobalance"
+
+[[effect.cpu.param]]
+key = "brightness"
+expr = "brightness"
+
+[[effect.cpu.param]]
+key = "contrast"
+expr = "contrast"
+
+[[effect.cpu.param]]
+key = "saturation"
+expr = "saturation"
+
+[[effect]]
+id = "genesis.vignette"
+name = "Vignette"
+kind = "effect"
+category = "Stylize"
+intensity = "strength"
+order = 40
+description = "Darkened corners that draw the eye to the middle."
+body = "packs/genesis.vignette/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "strength"
+label = "Strength"
+min = 10
+max = 100
+default = 50
+step = 1
+unit = "%"
+
+[[effect.uniform]]
+key = "strength_norm"
+expr = "clamp(strength / 100.0, 0.0, 1.0)"
+
+[[effect]]
+id = "genesis.vignette-color"
+name = "Colour Vignette"
+kind = "effect"
+category = "Stylize"
+intensity = "strength"
+order = 61
+description = "A soft coloured vignette darkening the edges."
+body = "packs/genesis.vignette-color/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "hue"
+label = "Colour Hue"
+min = 0
+max = 360
+default = 260
+step = 1
+unit = "deg"
+
+[[effect.param]]
+key = "amount"
+label = "Amount"
+min = 0
+max = 100
+default = 60
+step = 1
+unit = "%"
+
+[[effect.param]]
+key = "strength"
+label = "Strength"
+min = 0
+max = 100
+default = 80
+step = 1
+unit = "%"
+
+[[effect]]
+id = "genesis.voice-enhance"
+name = "Voice Enhance"
+kind = "audio"
+category = "Audio"
+order = 4
+description = "Lift the presence and air bands of a voice: presence around 1.9 kHz, brilliance around 7.5 kHz."
+
+[[effect.param]]
+key = "presence"
+label = "Presence"
+min = -24
+max = 12
+default = 0
+step = 0.5
+unit = "dB"
+
+[[effect.param]]
+key = "brilliance"
+label = "Brilliance"
+min = -24
+max = 12
+default = 0
+step = 0.5
+unit = "dB"
+
+[effect.audio]
+element = "equalizer-10bands"
+
+[[effect.audio.param]]
+key = "band6"
+expr = "presence"
+
+[[effect.audio.param]]
+key = "band8"
+expr = "brilliance"
+
+[[effect]]
+id = "genesis.watercolor"
+name = "Watercolor"
+kind = "effect"
+category = "Stylize"
+order = 58
+description = "A soft wash with deepened midtones, pigment bleeding on paper."
+body = "packs/genesis.watercolor/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "detail"
+label = "Detail"
+min = 0
+max = 20
+default = 4
+step = 1
+unit = "px"
+
+[[effect.param]]
+key = "strength"
+label = "Strength"
+min = 0
+max = 100
+default = 60
+step = 1
+unit = "%"
+
+[[effect]]
+id = "genesis.wave"
+name = "Wave"
+kind = "effect"
+category = "Distort"
+intensity = "amplitude"
+order = 58
+description = "The picture rippled into a sine wave, one way or the other."
+body = "packs/genesis.wave/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "amplitude"
+label = "Amplitude"
+min = 0
+max = 100
+default = 20
+step = 1
+unit = "%"
+
+[[effect.param]]
+key = "frequency"
+label = "Frequency"
+type = "int"
+min = 1
+max = 20
+default = 4
+step = 1
+
+[[effect.param]]
+key = "direction"
+label = "Direction"
+type = "enum"
+min = 0
+max = 1
+default = 0
+step = 1
+values = [0, 1]
+labels = ["Horizontal", "Vertical"]
+
+[[effect]]
+id = "genesis.white-balance"
+name = "White Balance"
+kind = "filter"
+category = "Color"
+intensity = "strength"
+order = 16
+description = "Colour temperature in kelvin and a green-to-magenta tint in one control, as the camera's white balance, mixed from full strength down to the untouched picture."
+body = "packs/genesis.white-balance/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "temperature"
+label = "Temperature"
+min = 2000
+max = 11000
+default = 6500
+step = 50
+unit = "K"
+animate = true
+
+[[effect.param]]
+key = "tint"
+label = "Tint"
+min = -100
+max = 100
+default = 0
+step = 1
+unit = "%"
+animate = true
+
+[[effect.param]]
+key = "strength"
+label = "Strength"
+min = 0
+max = 100
+default = 100
+step = 1
+unit = "%"
+
+[[effect]]
+id = "genesis.zoom-blur"
+name = "Zoom Blur"
+kind = "effect"
+category = "Blur"
+intensity = "amount"
+order = 23
+description = "A rush towards a point, as if the lens zoomed during the shot."
+body = "packs/genesis.zoom-blur/effect.glsl"
+
+[effect.wgsl]
+entry = "effect.glsl"
+
+[[effect.param]]
+key = "amount"
+label = "Amount"
+min = 0
+max = 100
+default = 25
+step = 1
+unit = "%"
+animate = true
+
+[[effect.param]]
+key = "x"
+label = "Centre X"
+min = 0
+max = 100
+default = 50
+step = 1
+unit = "%"
+
+[[effect.param]]
+key = "y"
+label = "Centre Y"
+min = 0
+max = 100
+default = 50
+step = 1
+unit = "%"
+

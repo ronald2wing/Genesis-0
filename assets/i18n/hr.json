@@ -1,0 +1,19 @@
+{
+    "_meta": {
+        "status": "unreviewed-machine-draft",
+        "source": "en",
+        "generated": "2026-10-04"
+    },
+    "app.title": "Genesis-0",
+    "start.recentProjects": "Nedavni projekti",
+    "start.empty": "Ovdje još ništa nema — projekti koje otvorite pojavit će se ovdje.",
+    "start.open": "Otvori",
+    "start.newProject": "Novi projekt",
+    "start.continue": "Nastavi na uređivač",
+    "start.templates": "Predlošci",
+    "start.templatesEmpty": "Još nema predložaka.",
+    "start.create": "Stvori",
+    "start.namePlaceholder": "Projekt bez naziva",
+    "tray.show": "Prikaži Genesis-0",
+    "tray.quit": "Izađi"
+}

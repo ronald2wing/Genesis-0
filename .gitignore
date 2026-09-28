@@ -1,0 +1,53 @@
+# Build output. Never committed: configure out-of-tree, e.g.
+#   cmake -S . -B build -G Ninja && cmake --build build && ctest --test-dir build
+# The spikes follow the same rule (spikes/<name>/build is theirs to regenerate).
+build/
+build-*/
+*.o
+*.a
+*.so
+*.so.*
+*.dylib
+*.dll
+*.exe
+*.d
+*.gcda
+*.gcno
+*.log
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+CMakeUserPresets.json
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+*.ninja
+.ninja_deps
+.ninja_log
+Testing/
+
+# Packaging
+_CPack_Packages/
+*.tar.gz
+*.deb
+*.rpm
+
+# Qt / QML generated
+*_autogen/
+mocs_compilation.cpp
+.qmake.stash
+
+# Editors and tooling
+.vscode/
+.idea/
+.cache/
+clangd/
+.clangd/
+*.swp
+*.orig
+*.rej
+
+# OS junk
+.DS_Store
+Thumbs.db

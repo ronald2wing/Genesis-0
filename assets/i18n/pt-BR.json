@@ -1,0 +1,19 @@
+{
+    "_meta": {
+        "status": "unreviewed-machine-draft",
+        "source": "en",
+        "generated": "2026-10-04"
+    },
+    "app.title": "Genesis-0",
+    "start.recentProjects": "Projetos recentes",
+    "start.empty": "Ainda não há nada aqui — os projetos que você abrir aparecerão aqui.",
+    "start.open": "Abrir",
+    "start.newProject": "Novo projeto",
+    "start.continue": "Continuar para o editor",
+    "start.templates": "Modelos",
+    "start.templatesEmpty": "Ainda não há modelos.",
+    "start.create": "Criar",
+    "start.namePlaceholder": "Projeto sem título",
+    "tray.show": "Mostrar Genesis-0",
+    "tray.quit": "Sair"
+}

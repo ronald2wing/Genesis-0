@@ -1,0 +1,18 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# SPDX-FileCopyrightText: 2026 Genesis-0 contributors
+
+# The builtin captions extension: the studio shell's caption form (consent,
+# download, progress, cancel) surfaced as a full-window dialog. There is no
+# `entry` (no shared library): the dialog is pure QML and reaches the host
+# through the `extensions.call` bridge, so the extension is data + UI only. The
+# dialog is a bare file name beside this manifest, as the parser requires.
+
+[extension]
+id = "genesis.captions"
+name = "Genesis Captions"
+version = 1
+api = 1
+
+[[dialog]]
+label = "Captions"
+qml = "CaptionsDialog.qml"
